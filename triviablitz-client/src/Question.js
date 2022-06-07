@@ -15,12 +15,13 @@ export function Question() {
         const response = await fetch(url);
         const json = await response.json();
 
-        console.log(json.results.question);
-        setQuestion(json.results.question);
-        console.log(json.results.answer);
-        setAnswer(json.results.answer);
-        console.log(json.results.incorrectAnswers);
-        setIncorrectAnswers(json.results.incorrectAnswers);
+        console.log(json.results[0]);
+        console.log(json.results[0].question);
+        setQuestion(json.results[0].question);
+        console.log(json.results[0].correct_answer);
+        setAnswer(json.results[0].correct_answer);
+        console.log(json.results[0].incorrectAnswers);
+        setIncorrectAnswers(json.results[0].incorrectAnswers);
       } catch (error) {
         console.log("error", error);
       }
@@ -32,9 +33,9 @@ export function Question() {
     <>
       <h1>{question}</h1>
       <h2>{answer}</h2>
-      <h3>
-        {incorrectAnswers[0]}, {incorrectAnswers[1]}, {incorrectAnswers[2]}
-      </h3>
+      {/* <h3> */}
+        {/* {incorrectAnswers[0]}, {incorrectAnswers[1]}, {incorrectAnswers[2]} */}
+      {/* </h3> */}
     </>
   );
 }
