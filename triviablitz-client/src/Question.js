@@ -26,13 +26,8 @@ export function Question() {
         const response = await fetch(url);
         const json = await response.json();
 
-        console.log(json.results[0].question);
         setQuestion(json.results[0].question);
-
-        console.log(json.results[0].correct_answer);
         setAnswer(json.results[0].correct_answer);
-
-        console.log(json.results[0].incorrect_answers);
         setIncorrectAnswers(json.results[0].incorrect_answers);
         
       } catch (error) {
@@ -43,7 +38,7 @@ export function Question() {
   }, []);
 
   const checkAnswer = (usersGuess) => {
-    if (usersGuess == answer){
+    if (usersGuess === answer){
       console.log("CORRECT");
     }else{
       console.log("wrong!!");
@@ -62,28 +57,28 @@ export function Question() {
       <button ref={buttonRef4} onClick={checkAnswer(shuffledAnswersArray[3])}>{shuffledAnswersArray[3]}</button> */}
 
       <button ref={buttonRef1} onClick={()=> {
-        if(answer == shuffledAnswersArray[0]){
+        if(answer === shuffledAnswersArray[0]){
           console.log("Correct!");
         }else{
           console.log(`incorrect.. answer is ${answer}`);
         }
       }}>{shuffledAnswersArray[0]}</button>
       <button ref={buttonRef2} onClick={()=>  {
-        if(answer == shuffledAnswersArray[1]){
+        if(answer === shuffledAnswersArray[1]){
           console.log(`Correct!`)
         }else{
           console.log(`incorrect.. answer is ${answer}`);
         }
       }}>{shuffledAnswersArray[1]}</button>
       <button ref={buttonRef3}  onClick={()=> {
-        if(answer == shuffledAnswersArray[2]){
+        if(answer === shuffledAnswersArray[2]){
           console.log(`Correct!`)
         }else{
           console.log(`incorrect.. answer is ${answer}`);
         }
       }}>{shuffledAnswersArray[2]}</button>
       <button ref={buttonRef4} onClick={()=> {
-        if(answer == shuffledAnswersArray[3]){
+        if(answer === shuffledAnswersArray[3]){
           console.log(`Correct!`)
         }else{
           console.log(`incorrect.. answer is ${answer}`);
