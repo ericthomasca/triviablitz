@@ -26,7 +26,11 @@ export function Question() {
         const response = await fetch(url);
         const json = await response.json();
 
-        setQuestion(json.results[0].question);
+        setQuestion(json.results[0].question
+          .replace(/&quot;/g,'"')
+          .replace(/&eacute;/g,'é')            // this list will grow, might have to be added to all text pulled 
+          .replace(/&rsquo;/g,'’')             // from question API, will become a function then
+          .replace(/&#039;/g,"'"));
         setAnswer(json.results[0].correct_answer);
         setIncorrectAnswers(json.results[0].incorrect_answers);
         
