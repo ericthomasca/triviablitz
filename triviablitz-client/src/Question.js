@@ -2,9 +2,40 @@ import { useState, useEffect, useRef} from "react";
 import { useNavigate, Link} from "react-router-dom";
 
 
-export function Question({questionDifficulty = null}) {
-  // const difficultyArray = ["easy", "medium", "hard"];
-  let difficulty = questionDifficulty;
+export function HomePage(){
+
+  let navigate = useNavigate();
+  const checkName = () =>{
+    if (document.getElementById("name").value == ""){
+      alert("Please enter a name");
+    }else{
+      navigate("/game");
+      
+
+    }
+  }
+
+return(
+  <>
+    <h1>TriviaBlitz!</h1>
+    <form>
+      <label>Player name:</label>
+      <input id="name" type="text"></input>
+      <button onClick={()=> checkName()}>Start Game</button>
+    </form>
+  </>
+)
+
+
+}
+
+export function Question() {
+  const difficultyArray = ["easy", "medium", "hard"];
+  
+  let difficultyIndex = 0;
+
+
+  const [changeDifficultyState, setChangeDifficultyState] = useState(difficultyArray[difficultyIndex]);
   const [question, setQuestion] = useState("");
   const [answer, setAnswer] = useState("");
   const [incorrectAnswers, setIncorrectAnswers] = useState([]);
@@ -14,16 +45,16 @@ export function Question({questionDifficulty = null}) {
   const buttonRef3 = useRef();
   const buttonRef4 = useRef();
 
-  const answerArray = [answer, incorrectAnswers[0], incorrectAnswers[1], incorrectAnswers[2]];
+  let answerArray = [answer, incorrectAnswers[0], incorrectAnswers[1], incorrectAnswers[2]];
   let shuffledAnswersArray = answerArray
   .map(value => ({ value, sort: Math.random() }))
   .sort((a, b) => a.sort - b.sort)
   .map(({ value }) => value)
 
   useEffect(() => {
-      const url = "https://opentdb.com/api.php?amount=1&type=multiple&difficulty=" + difficulty;
+      const url = "https://opentdb.com/api.php?amount=1&type=multiple&difficulty=" + changeDifficultyState;
     // const url = "https://opentdb.com/api.php?amount=1&type=multiple";
-
+    console.log(url);
     const fetchData = async () => {
       try {
         const response = await fetch(url);
@@ -32,28 +63,28 @@ export function Question({questionDifficulty = null}) {
         setAnswer(json.results[0].correct_answer);
         setIncorrectAnswers(json.results[0].incorrect_answers);
         
+        
+        
       } catch (error) {
         console.log("error", error);
       }
     };
     fetchData();
-  }, []);
+  }, [changeDifficultyState]);
 
   
   let questionNumber = 1;
-  let navigate = useNavigate();
   const checkAnswer = (usersGuess) => {
     if (usersGuess == answer){
       alert("CORRECT");
-      //FIXME: fix it so that the page goes to the next question if correct
-      // questionNumber +=1;
-      // if(questionNumber == 3){
-      //   difficulty = "hard";
-      // }
-  
-      // navigate(`/q${questionNumber}`);
-      // <Link to="/q2"></Link>
-      // window.location.reload();
+      difficultyIndex += 1;
+      console.log(difficultyArray[difficultyIndex])
+      setChangeDifficultyState(difficultyArray[difficultyIndex]);
+      // answerArray = [answer, incorrectAnswers[0], incorrectAnswers[1], incorrectAnswers[2]];
+      // shuffledAnswersArray = answerArray
+      // .map(value => ({ value, sort: Math.random() }))
+      // .sort((a, b) => a.sort - b.sort)
+      // .map(({ value }) => value)
 
     }else{
       alert("wrong!!");
@@ -63,7 +94,7 @@ export function Question({questionDifficulty = null}) {
 
   return (
     <>
-      <h1>{question} - {difficulty.toUpperCase()}</h1>
+      <h1>{question} - {changeDifficultyState.toUpperCase()}</h1>
       <hr></hr>
       <p>Shuffled</p>
       <button ref={buttonRef1} onClick={()=>checkAnswer(shuffledAnswersArray[0])}>{shuffledAnswersArray[0]}</button>

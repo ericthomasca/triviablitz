@@ -1,6 +1,7 @@
 import "./App.css";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Question from "./Question";
+import {Question, HomePage} from "./Question";
+
 
 
 
@@ -8,9 +9,8 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/q1" element={<Question questionDifficulty={"easy"}/>}></Route>
-        <Route path="/q2" element={<Question questionDifficulty={"medium"}/>}></Route>
-        <Route path="/q3" element={<Question questionDifficulty={"hard"}/>}></Route>
+        <Route path="/" element={<HomePage/>}></Route>
+        <Route path="/game" element={<Question questionDifficulty={"easy"}/>}></Route>
 
       </Routes>
     </BrowserRouter>
