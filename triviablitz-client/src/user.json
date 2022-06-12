@@ -1,5 +1,6 @@
 {
-    "user": "TestName",    
+    "user": "TestName",  
+    "_id": "Built from Mongo",  
     "score": 0,
     "cookie": "String",
     "time_last_played": "date-time object" 
