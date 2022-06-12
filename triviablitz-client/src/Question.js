@@ -5,7 +5,6 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import { useNavigate } from "react-router-dom";
 
 
-
 export function Question() {
   let navigate = useNavigate();
   const difficultyArray = ["easy", "medium", "hard"];
