@@ -1,10 +1,13 @@
 import { useState, useEffect } from "react";
 import Button from 'react-bootstrap/Button';
 // import { Button } from 'react-bootstrap';
-import "bootstrap/dist/css/bootstrap.min.css"
+import "bootstrap/dist/css/bootstrap.min.css";
+import { useNavigate } from "react-router-dom";
+
 
 
 export function Question() {
+  let navigate = useNavigate();
   const difficultyArray = ["easy", "medium", "hard"];
   let difficultyIndex = 0;
 
@@ -71,9 +74,13 @@ export function Question() {
       // .sort((a, b) => a.sort - b.sort)
       // .map(({ value }) => value)
     } else {
-      alert("wrong!!");
+      alert("Answer Incorrect! Try again tomorrow!");
+      navigate("/");
     }
-  };
+    // if (difficultyArray[difficultyIndex] === "hard"){
+    //   navigate("/");
+    // }
+  };    
 
   function shuffleIndex(array) {
     let currentIndex = array.length,  randomIndex;
