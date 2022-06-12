@@ -60,6 +60,11 @@ export function Question() {
       difficultyIndex += 1;
       console.log(difficultyArray[difficultyIndex]);
       setChangeDifficultyState(difficultyArray[difficultyIndex]);
+      // answerArray = [answer, incorrectAnswers[0], incorrectAnswers[1], incorrectAnswers[2]];
+      // shuffledAnswersArray = answerArray
+      // .map(value => ({ value, sort: Math.random() }))
+      // .sort((a, b) => a.sort - b.sort)
+      // .map(({ value }) => value)
     } else {
       alert("wrong!!");
     }
