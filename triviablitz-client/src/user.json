@@ -1,0 +1,6 @@
+{
+    "user": "TestName",    
+    "score": 0,
+    "cookie": "String",
+    "time_last_played": "date-time object" 
+}
