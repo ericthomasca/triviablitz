@@ -1,41 +1,12 @@
-import { useState, useEffect, useRef} from "react";
-import { useNavigate, Link} from "react-router-dom";
-
-
-export function HomePage(){
-
-  let navigate = useNavigate();
-  const checkName = () =>{
-    if (document.getElementById("name").value == ""){
-      alert("Please enter a name");
-    }else{
-      navigate("/game");
-      
-
-    }
-  }
-
-return(
-  <>
-    <h1>TriviaBlitz!</h1>
-    <form>
-      <label>Player name:</label>
-      <input id="name" type="text"></input>
-      <button onClick={()=> checkName()}>Start Game</button>
-    </form>
-  </>
-)
-
-
-}
+import { useState, useEffect, useRef } from "react";
 
 export function Question() {
   const difficultyArray = ["easy", "medium", "hard"];
-  
   let difficultyIndex = 0;
 
-
-  const [changeDifficultyState, setChangeDifficultyState] = useState(difficultyArray[difficultyIndex]);
+  const [changeDifficultyState, setChangeDifficultyState] = useState(
+    difficultyArray[difficultyIndex]
+  );
   const [question, setQuestion] = useState("");
   const [answer, setAnswer] = useState("");
   const [incorrectAnswers, setIncorrectAnswers] = useState([]);
@@ -45,26 +16,37 @@ export function Question() {
   const buttonRef3 = useRef();
   const buttonRef4 = useRef();
 
-  let answerArray = [answer, incorrectAnswers[0], incorrectAnswers[1], incorrectAnswers[2]];
+  let answerArray = [
+    answer,
+    incorrectAnswers[0],
+    incorrectAnswers[1],
+    incorrectAnswers[2],
+  ];
   let shuffledAnswersArray = answerArray
-  .map(value => ({ value, sort: Math.random() }))
-  .sort((a, b) => a.sort - b.sort)
-  .map(({ value }) => value)
+    .map((value) => ({ value, sort: Math.random() }))
+    .sort((a, b) => a.sort - b.sort)
+    .map(({ value }) => value);
+
+  const textFormatFix = (inputText) => {
+    return inputText
+      .replace(/&quot;/g, '"')
+      .replace(/&eacute;/g, "é")
+      .replace(/&rsquo;/g, "’")
+      .replace(/&#039;/g, "'");
+  };
 
   useEffect(() => {
-      const url = "https://opentdb.com/api.php?amount=1&type=multiple&difficulty=" + changeDifficultyState;
-    // const url = "https://opentdb.com/api.php?amount=1&type=multiple";
+    const url =
+      "https://opentdb.com/api.php?amount=1&type=multiple&difficulty=" +
+      changeDifficultyState;
     console.log(url);
     const fetchData = async () => {
       try {
         const response = await fetch(url);
         const json = await response.json();
-        setQuestion(json.results[0].question);
-        setAnswer(json.results[0].correct_answer);
+        setQuestion(textFormatFix(json.results[0].question));
+        setAnswer(textFormatFix(json.results[0].correct_answer));
         setIncorrectAnswers(json.results[0].incorrect_answers);
-        
-        
-        
       } catch (error) {
         console.log("error", error);
       }
@@ -72,45 +54,58 @@ export function Question() {
     fetchData();
   }, [changeDifficultyState]);
 
-  
-  let questionNumber = 1;
   const checkAnswer = (usersGuess) => {
-    if (usersGuess == answer){
+    if (usersGuess === answer) {
       alert("CORRECT");
       difficultyIndex += 1;
-      console.log(difficultyArray[difficultyIndex])
+      console.log(difficultyArray[difficultyIndex]);
       setChangeDifficultyState(difficultyArray[difficultyIndex]);
-      // answerArray = [answer, incorrectAnswers[0], incorrectAnswers[1], incorrectAnswers[2]];
-      // shuffledAnswersArray = answerArray
-      // .map(value => ({ value, sort: Math.random() }))
-      // .sort((a, b) => a.sort - b.sort)
-      // .map(({ value }) => value)
-
-    }else{
+    } else {
       alert("wrong!!");
-      
     }
   };
 
   return (
     <>
-      <h1>{question} - {changeDifficultyState.toUpperCase()}</h1>
+      <h1>
+        {question} - {changeDifficultyState.toUpperCase()}
+      </h1>
       <hr></hr>
       <p>Shuffled</p>
-      <button ref={buttonRef1} onClick={()=>checkAnswer(shuffledAnswersArray[0])}>{shuffledAnswersArray[0]}</button>
-      <button ref={buttonRef2} onClick={()=> checkAnswer(shuffledAnswersArray[1])}>{shuffledAnswersArray[1]}</button>
-      <button ref={buttonRef3}  onClick={()=> checkAnswer(shuffledAnswersArray[2])}>{shuffledAnswersArray[2]}</button>
-      <button ref={buttonRef4} onClick={()=> checkAnswer(shuffledAnswersArray[3])}>{shuffledAnswersArray[3]}</button>
+      <button
+        ref={buttonRef1}
+        onClick={() => checkAnswer(shuffledAnswersArray[0])}
+      >
+        {textFormatFix(shuffledAnswersArray[0])}
+      </button>
+      <button
+        ref={buttonRef2}
+        onClick={() => checkAnswer(shuffledAnswersArray[1])}
+      >
+        {textFormatFix(shuffledAnswersArray[1])}
+      </button>
+      <button
+        ref={buttonRef3}
+        onClick={() => checkAnswer(shuffledAnswersArray[2])}
+      >
+        {textFormatFix(shuffledAnswersArray[2])}
+      </button>
+      <button
+        ref={buttonRef4}
+        onClick={() => checkAnswer(shuffledAnswersArray[3])}
+      >
+        {textFormatFix(shuffledAnswersArray[3])}
+      </button>
+      {/* <br></br>
       <br></br>
       <br></br>
-      <br></br>
-      <br/>
-      <br/>
+      <br />
+      <br />
       <p>unshuffled</p>
       <h2>{answer} : correct answer</h2>
       <h2>{incorrectAnswers[0]}</h2>
       <h2>{incorrectAnswers[1]}</h2>
-      <h2>{incorrectAnswers[2]}</h2>
+      <h2>{incorrectAnswers[2]}</h2> */}
     </>
   );
 }
