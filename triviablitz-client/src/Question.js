@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import Button from 'react-bootstrap/Button';
 // import { Button } from 'react-bootstrap';
 import "bootstrap/dist/css/bootstrap.min.css"
+import { Navigate } from "react-router-dom";
 
 
 export function Question() {
@@ -73,6 +74,9 @@ export function Question() {
     } else {
       alert("wrong!!");
     }
+    // if (difficultyArray[difficultyIndex] == "hard"){
+    //   navigate("/")
+    // }
   };
 
   function shuffleIndex(array) {
