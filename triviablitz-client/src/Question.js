@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect } from "react";
 import Button from 'react-bootstrap/Button';
 // import { Button } from 'react-bootstrap';
 import "bootstrap/dist/css/bootstrap.min.css"
@@ -14,11 +14,6 @@ export function Question() {
   const [question, setQuestion] = useState("");
   const [answer, setAnswer] = useState("");
   const [incorrectAnswers, setIncorrectAnswers] = useState([]);
-
-  // const buttonRef1 = useRef();
-  // const buttonRef2 = useRef();
-  // const buttonRef3 = useRef();
-  // const buttonRef4 = useRef();
 
   let answerArray = [
     answer,
@@ -48,14 +43,14 @@ export function Question() {
       try {
         const response = await fetch(url);
         const json = await response.json();
-        setQuestion(json.results[0].question);
+        setQuestion(textFormatFix(json.results[0].question));
         setAnswer(json.results[0].correct_answer);
         setIncorrectAnswers(json.results[0].incorrect_answers);
 
-        shuffledAnswersArray = answerArray
-        .map((value) => ({ value, sort: Math.random() }))
-        .sort((a, b) => a.sort - b.sort)
-        .map(({ value }) => value);
+        // shuffledAnswersArray = answerArray
+        // .map((value) => ({ value, sort: Math.random() }))
+        // .sort((a, b) => a.sort - b.sort)
+        // .map(({ value }) => value);
 
       } catch (error) {
         console.log("error", error);
@@ -80,6 +75,25 @@ export function Question() {
     }
   };
 
+  function shuffleIndex(array) {
+    let currentIndex = array.length,  randomIndex;
+  
+    while (currentIndex !== 0) {
+  
+      randomIndex = Math.floor(Math.random() * currentIndex);
+      currentIndex--;
+  
+      [array[currentIndex], array[randomIndex]] = [
+        array[randomIndex], array[currentIndex]];
+    }
+  
+    return array;
+  }
+  
+  var arr = [0, 1, 2, 3];
+  shuffleIndex(arr);
+  console.log(arr);
+
   return (
     <>
       <h1>
@@ -87,32 +101,25 @@ export function Question() {
       </h1>
       <hr></hr>
       <p>Shuffled</p>
-      <>
+      <> 
         <Button
-          // ref={buttonRef1}
-          onClick={() => checkAnswer(shuffledAnswersArray[0])}
-        >
-          {shuffledAnswersArray[0]}
+          onClick={() => checkAnswer(shuffledAnswersArray[arr[0]])}>
+          {shuffledAnswersArray[arr[0]]}
         </Button>
         <Button
-          // ref={buttonRef2}
-          onClick={() => checkAnswer(shuffledAnswersArray[1])}
-        >
-          {shuffledAnswersArray[1]}
+          onClick={() => checkAnswer(shuffledAnswersArray[arr[1]])}>
+          {shuffledAnswersArray[arr[1]]}
         </Button>
         <Button
-          // ref={buttonRef3}
-          onClick={() => checkAnswer(shuffledAnswersArray[2])}
-        >
-          {shuffledAnswersArray[2]}
+          onClick={() => checkAnswer(shuffledAnswersArray[arr[2]])}>
+          {shuffledAnswersArray[arr[2]]}
         </Button>
         <Button
-          // ref={buttonRef4}
-          onClick={() => checkAnswer(shuffledAnswersArray[3])}
-        >
-          {shuffledAnswersArray[3]}
+          onClick={() => checkAnswer(shuffledAnswersArray[arr[3]])}>
+          {shuffledAnswersArray[arr[3]]}
         </Button>
       </>
+      {/* TODO: Fix formatting issue with buttons */}
       <br></br>
       <br></br>
       <br></br>
