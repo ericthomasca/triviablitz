@@ -8,11 +8,9 @@ import { useNavigate } from "react-router-dom";
 export function Question() {
   let navigate = useNavigate();
   const difficultyArray = ["easy", "medium", "hard"];
-  let difficultyIndex = 0;
 
-  const [changeDifficultyState, setChangeDifficultyState] = useState(
-    difficultyArray[difficultyIndex]
-  );
+
+  const [changeDifficultyState, setChangeDifficultyState] = useState(0);
   const [question, setQuestion] = useState("");
   const [answer, setAnswer] = useState("");
   const [incorrectAnswers, setIncorrectAnswers] = useState([]);
@@ -39,7 +37,7 @@ export function Question() {
   useEffect(() => {
     const url =
       "https://opentdb.com/api.php?amount=1&type=multiple&difficulty=" +
-      changeDifficultyState;
+      difficultyArray[changeDifficultyState];
     console.log(url);
     const fetchData = async () => {
       try {
@@ -64,9 +62,10 @@ export function Question() {
   const checkAnswer = (usersGuess) => {
     if (usersGuess === answer) {
       alert("CORRECT");
-      difficultyIndex += 1;
-      console.log(difficultyArray[difficultyIndex]);
-      setChangeDifficultyState(difficultyArray[difficultyIndex]);
+      //difficultyIndex += 1;
+      
+      setChangeDifficultyState(changeDifficultyState + 1);
+      console.log(difficultyArray[changeDifficultyState]);
       // answerArray = [answer, incorrectAnswers[0], incorrectAnswers[1], incorrectAnswers[2]];
       // shuffledAnswersArray = answerArray
       // .map(value => ({ value, sort: Math.random() }))
@@ -103,7 +102,7 @@ export function Question() {
   return (
     <>
       <h1>
-        {question} - {changeDifficultyState.toUpperCase()}
+        {question} - {difficultyArray[changeDifficultyState].toUpperCase()}
       </h1>
       <hr></hr>
       <p>Shuffled</p>
