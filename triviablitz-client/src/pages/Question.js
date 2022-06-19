@@ -2,11 +2,12 @@ import { useState, useEffect } from "react";
 import Button from 'react-bootstrap/Button';
 // import { Button } from 'react-bootstrap';
 import "bootstrap/dist/css/bootstrap.min.css";
-import { useNavigate } from "react-router-dom";
+// import { useNavigate } from "react-router-dom";
+
 
 
 export function Question() {
-  let navigate = useNavigate();
+  // let navigate = useNavigate();
   const difficultyArray = ["easy", "medium", "hard"];
 
 
@@ -73,7 +74,7 @@ export function Question() {
       // .map(({ value }) => value)
     } else {
       alert("Answer Incorrect! Try again tomorrow!");
-      navigate("/");
+      // navigate("/");
     }
     // if (difficultyArray[difficultyIndex] === "hard"){
     //   navigate("/");

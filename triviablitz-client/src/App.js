@@ -1,23 +1,17 @@
 import "./App.css";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
-import HomePage from "./HomePage";
-import Question from "./Question";
-import 'bootstrap/dist/css/bootstrap.min.css';
-
-
-
+import React from "react";
+import Body from "./pages/Body";
+import Navigation from "./pages/Navigation";
 
 function App() {
+  const time = new Date();
+  time.setSeconds(time.getSeconds() + 600); // 10 minutes timer
+
   return (
-    <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<HomePage />}></Route>
-        <Route
-          path="/game"
-          element={<Question questionDifficulty={"easy"} />}
-        ></Route>
-      </Routes>
-    </BrowserRouter>
+    <>
+      <Navigation />
+      <Body />
+    </>
   );
 }
 

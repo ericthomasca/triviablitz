@@ -1,17 +1,17 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-export function HomePage() {
+export function LogIn() {
   const [user, setUser] = useState("");
   const [score, setScore] = useState(0);
   const [timeLastPlayed, setTimeLastPlayed] = useState(new Date().getTime());
 
-  let navigate = useNavigate();
+  // let navigate = useNavigate();
   const checkName = () => {
     if (document.getElementById("name").value === "") {
       alert("Please enter a name");
     } else {
-      navigate("/game");
+      // navigate("/game");
     }
   };
   const handleSubmit = (e) =>{
@@ -43,4 +43,4 @@ export function HomePage() {
   );
 }
 
-export default HomePage;
+export default LogIn;
