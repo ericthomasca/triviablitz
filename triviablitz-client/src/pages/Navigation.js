@@ -2,20 +2,20 @@ import {Container, Nav} from 'react-bootstrap';
 import Navbar from 'react-bootstrap/Navbar';
 
 export function Navigation(){
-    return(
-        <>
+    return (
+      <>
         <Navbar bg="primary" variant="dark">
-            <Container>
-            <Navbar.Brand href="#home">Navbar</Navbar.Brand>
+          <Container>
+            <Navbar.Brand href="#home">TriviaBlitz</Navbar.Brand>
             <Nav className="me-auto">
-            <Nav.Link href="#home">Home</Nav.Link>
-            <Nav.Link href="#features">Features</Nav.Link>
-            
+              <Nav.Link href="/">Login</Nav.Link>
+              <Nav.Link href="/game">Game</Nav.Link>
+              <Nav.Link href="/users">Users</Nav.Link>
             </Nav>
-            </Container>
+          </Container>
         </Navbar>
-        </>
-    )
+      </>
+    );
 }
 
 export default Navigation;

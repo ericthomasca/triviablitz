@@ -2,7 +2,7 @@ import LogIn from "./LogIn";
 import Question from "./Question";
 
 
-export function CurrentPage(props){
+export function Body(){
     // output HomePage, Question, Leaderboards, GameOver
     // conditional rendering
     
@@ -14,4 +14,4 @@ export function CurrentPage(props){
     )
 }
 
-export default CurrentPage;
+export default Body;
