@@ -9,7 +9,7 @@ export function Navigation(){
             <Navbar.Brand href="#home">TriviaBlitz</Navbar.Brand>
             <Nav className="me-auto">
               <Nav.Link href="/">Login</Nav.Link>
-              <Nav.Link href="/game">Game</Nav.Link>
+              {/* <Nav.Link href="/game">Game</Nav.Link> */}
               <Nav.Link href="/users">Users</Nav.Link>
             </Nav>
           </Container>

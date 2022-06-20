@@ -6,12 +6,12 @@ export function LogIn() {
   const [score, setScore] = useState(0);
   const [timeLastPlayed, setTimeLastPlayed] = useState(new Date().getTime());
 
-  // let navigate = useNavigate();
+  let navigate = useNavigate();
   const checkName = () => {
     if (document.getElementById("name").value === "") {
       alert("Please enter a name");
     } else {
-      // navigate("/game");
+      navigate("/game");
     }
   };
   const handleSubmit = (e) =>{
