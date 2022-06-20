@@ -1,7 +1,8 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-export function LogIn() {
+
+export function LogIn({username, setUsername = (f) =>f}) {
   const [user, setUser] = useState("");
   const [score, setScore] = useState(0);
   const [timeLastPlayed, setTimeLastPlayed] = useState(new Date().getTime());
@@ -11,6 +12,9 @@ export function LogIn() {
     if (document.getElementById("name").value === "") {
       alert("Please enter a name");
     } else {
+      setUsername(document.getElementById("name").value);
+      alert(document.getElementById("name").value)
+      console.log(username);
       navigate("/game");
     }
   };
@@ -37,7 +41,7 @@ export function LogIn() {
       <form onSubmit={handleSubmit}>
         <label>Player name:</label>
         <input id="name" type="text"></input>
-        <button required value={user} onClick={() => checkName()} onChange={(e)=> setUser(e.target.value)}>Start Game</button>
+        <button required value={user} onClick={() => checkName()} onChange={(e)=> {setUser(e.target.value); setUsername(e.target.value)}}>Start Game</button>
       </form>
     </>
   );
