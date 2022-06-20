@@ -2,12 +2,14 @@ import { useState, useEffect } from "react";
 import Button from 'react-bootstrap/Button';
 // import { Button } from 'react-bootstrap';
 import "bootstrap/dist/css/bootstrap.min.css";
-// import { useNavigate } from "react-router-dom";
+import { Navigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
+let playerScore = 0;
 
 
 export function Question() {
-  // let navigate = useNavigate();
+  let navigate = useNavigate();
   const difficultyArray = ["easy", "medium", "hard"];
 
 
@@ -64,6 +66,19 @@ export function Question() {
     if (usersGuess === answer) {
       alert("CORRECT");
       //difficultyIndex += 1;
+      if (difficultyArray[changeDifficultyState] === "easy"){
+        playerScore +=1;
+        console.log(playerScore);
+      }else if(difficultyArray[changeDifficultyState] === "medium"){
+        playerScore +=3;
+        console.log(playerScore);
+      }else if(difficultyArray[changeDifficultyState] === "hard"){
+        playerScore +=5;
+        console.log(playerScore);
+        navigate("/gameover", {state:{id: 1, score: playerScore}});
+        
+      }
+
       
       setChangeDifficultyState(changeDifficultyState + 1);
       console.log(difficultyArray[changeDifficultyState]);
@@ -74,7 +89,7 @@ export function Question() {
       // .map(({ value }) => value)
     } else {
       alert("Answer Incorrect! Try again tomorrow!");
-      // navigate("/");
+      navigate("/gameover", {state:{id: 1, score: playerScore}});
     }
     // if (difficultyArray[difficultyIndex] === "hard"){
     //   navigate("/");
