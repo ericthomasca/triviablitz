@@ -1,3 +1,4 @@
+import React from 'react'
 import {Container, Nav} from 'react-bootstrap';
 import Navbar from 'react-bootstrap/Navbar';
 import { useLocation } from "react-router-dom";
@@ -7,7 +8,7 @@ let username = "user";
 export function Navigation({username}){
   // const location = useLocation();
     return (
-      <>
+      
         <Navbar bg="primary" variant="dark">
           <Container>
             <Navbar.Brand href="#home">TriviaBlitz</Navbar.Brand>
@@ -19,8 +20,7 @@ export function Navigation({username}){
             </Nav>
           </Container>
           Hello, {username}!
-        </Navbar>
-      </>
+        </Navbar>      
     );
 }
 

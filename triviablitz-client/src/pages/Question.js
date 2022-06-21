@@ -1,9 +1,11 @@
+import React from 'react'
 import { useState, useEffect } from "react";
 import Button from 'react-bootstrap/Button';
 // import { Button } from 'react-bootstrap';
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Navigate } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
+
 
 let playerScore = 0;
 
