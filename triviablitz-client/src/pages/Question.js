@@ -141,16 +141,7 @@ export function Question() {
         </Button>
       </>
       {/* TODO: Fix formatting issue with buttons */}
-      <br></br>
-      <br></br>
-      <br></br>
-      <br />
-      <br />
-      <p>unshuffled</p>
-      <h2>{answer} : correct answer</h2>
-      <h2>{incorrectAnswers[0]}</h2>
-      <h2>{incorrectAnswers[1]}</h2>
-      <h2>{incorrectAnswers[2]}</h2>
+      
     </>
   );
 }

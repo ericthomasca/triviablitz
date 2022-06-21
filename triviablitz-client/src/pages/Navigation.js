@@ -4,7 +4,7 @@ import { useLocation } from "react-router-dom";
 
 let username = "user";
 
-export function Navigation(){
+export function Navigation({username}){
   // const location = useLocation();
     return (
       <>
