@@ -13,23 +13,21 @@ app.post("/hello", (req, res) => {
   res.send(`Hello ${req.body.name} this is a POST request`);
 });
 
-app.post("/api/addUser", async (req, res) => {
+const client = new MongoClient('mongodb://localhost:27017');
+app.post('/api/addUser', async (req, res) => {
   try {
     await client.connect();
 
-    const db = client.db("users");
-    const newUser = await db
-      .collection("users")
-      .insertOne({
-        user: req.body.user,
-        score: req.body.score,
-        time_last_played: req.body.time_last_played,
+    const db = client.db('users');
+    const newUser = await db.collection('users').insertOne({user: req.body.user, score: req.body.score,
+        timeLastPlayed: req.body.timeLastPlayed
       });
+    console.log(`new user ${newUser.user}`);
     // cookie: req.body.cookie
 
     res.sendStatus(200);
-
     client.close();
+
   } catch (error) {
     console.log(error);
     res.sendStatus(500);
