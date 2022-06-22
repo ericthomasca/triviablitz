@@ -47,8 +47,7 @@ app.get("/api/getUser/:id", (req, res) => {
         });
     }
   });
-}
-);
+});
 
 app.post("/api/addUser", (req, res) => {
   MongoClient.connect(url, { useNewUrlParser: true }, (err, client) => {
@@ -57,18 +56,44 @@ app.post("/api/addUser", (req, res) => {
       return;
     } else {
       const db = client.db("triviablitz");
-      db.collection("users").insertOne({
-        name: req.body.name,
-        score: req.body.score,
-        timeLastPlayed: req.body.timeLastPlayed
-      }, (err, result) => {
-        if (err) {
-          console.log(err);
-          return;
-        } else {
-          res.send(result);
+      db.collection("users").insertOne(
+        {
+          name: req.body.name,
+          score: req.body.score,
+          timeLastPlayed: req.body.timeLastPlayed,
+        },
+        (err, result) => {
+          if (err) {
+            console.log(err);
+            return;
+          } else {
+            res.send(result);
+          }
         }
-      });
+      );
+    }
+  });
+});
+
+app.put("/api/updateUser/:id", (req, res) => {
+  MongoClient.connect(url, { useNewUrlParser: true }, (err, client) => {
+    if (err) {
+      console.log(err);
+      return;
+    } else {
+      const db = client.db("triviablitz");
+      db.collection("users").updateOne(
+        { _id: req.params.id },
+        { $set: { score: req.body.score } },
+        (err, result) => {
+          if (err) {
+            console.log(err);
+            return;
+          } else {
+            res.send(result);
+          }
+        }
+      );
     }
   });
 });
