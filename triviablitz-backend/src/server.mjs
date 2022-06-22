@@ -2,38 +2,73 @@ import express from "express";
 import { MongoClient } from "mongodb";
 
 const app = express();
-
 app.use(express.json());
+app.listen(8800, () => console.log("Server started on port 8800"));
 
-app.get("/hello", (req, res) => res.send("Hello Stephen"));
+const url = "mongodb://localhost:27017";
 
-app.get("/hello/:name", (req, res) => res.send(`Hello ${req.params.name}`));
-
-app.post("/hello", (req, res) => {
-  res.send(`Hello ${req.body.name} this is a POST request`);
+app.get("/api/getUsers", (req, res) => {
+  MongoClient.connect(url, { useNewUrlParser: true }, (err, client) => {
+    if (err) {
+      console.log(err);
+      return;
+    } else {
+      const db = client.db("triviablitz");
+      db.collection("users")
+        .find({})
+        .toArray((err, result) => {
+          if (err) {
+            console.log(err);
+            return;
+          } else {
+            res.send(result);
+          }
+        });
+    }
+  });
 });
 
-app.post("/api/addUser", async (req, res) => {
-  try {
-    await client.connect();
+app.get("/api/getUser/:id", (req, res) => {
+  MongoClient.connect(url, { useNewUrlParser: true }, (err, client) => {
+    if (err) {
+      console.log(err);
+      return;
+    } else {
+      const db = client.db("triviablitz");
+      db.collection("users")
+        .find({ _id: req.params.id })
+        .toArray((err, result) => {
+          if (err) {
+            console.log(err);
+            return;
+          } else {
+            res.send(result);
+          }
+        });
+    }
+  });
+}
+);
 
-    const db = client.db("users");
-    const newUser = await db
-      .collection("users")
-      .insertOne({
-        user: req.body.user,
+app.post("/api/addUser", (req, res) => {
+  MongoClient.connect(url, { useNewUrlParser: true }, (err, client) => {
+    if (err) {
+      console.log(err);
+      return;
+    } else {
+      const db = client.db("triviablitz");
+      db.collection("users").insertOne({
+        name: req.body.name,
         score: req.body.score,
-        time_last_played: req.body.time_last_played,
+        timeLastPlayed: req.body.timeLastPlayed
+      }, (err, result) => {
+        if (err) {
+          console.log(err);
+          return;
+        } else {
+          res.send(result);
+        }
       });
-    // cookie: req.body.cookie
-
-    res.sendStatus(200);
-
-    client.close();
-  } catch (error) {
-    console.log(error);
-    res.sendStatus(500);
-  }
+    }
+  });
 });
-
-app.listen(8000, () => console.log("listening on port 8000"));
