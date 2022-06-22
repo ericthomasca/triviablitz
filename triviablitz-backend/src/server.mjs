@@ -75,7 +75,7 @@ app.post("/api/addUser", (req, res) => {
   });
 });
 
-app.put("/api/updateUser/:id", (req, res) => {
+app.put("/api/updateUser/:name", (req, res) => {
   MongoClient.connect(url, { useNewUrlParser: true }, (err, client) => {
     if (err) {
       console.log(err);
