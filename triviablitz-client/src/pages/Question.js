@@ -118,7 +118,6 @@ export function Question() {
         {question} - {difficultyArray[changeDifficultyState].toUpperCase()}
       </h1>
       <hr></hr>
-      <p>Shuffled</p>
       <>
         <Button onClick={() => checkAnswer(shuffledAnswersArray[arr[0]])}>
           {textFormatFix(shuffledAnswersArray[arr[0]])}
