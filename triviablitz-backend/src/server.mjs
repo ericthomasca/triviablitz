@@ -102,3 +102,25 @@ app.put("/api/updateUser/:name", (req, res) => {
     }
   });
 });
+
+app.delete("/api/deleteUser/:name", (req, res) => {
+  MongoClient.connect(url, { useNewUrlParser: true }, (err, client) => {
+    if (err) {
+      console.log(err);
+      return;
+    } else {
+      const db = client.db("triviablitz");
+      db.collection("users").deleteOne(
+        { name: req.params.name },
+        (err, result) => {
+          if (err) {
+            console.log(err);
+            return;
+          } else {
+            res.send(result);
+          }
+        }
+      );
+    }
+  });
+});
