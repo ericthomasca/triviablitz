@@ -84,7 +84,12 @@ app.put("/api/updateUser/:id", (req, res) => {
       const db = client.db("triviablitz");
       db.collection("users").updateOne(
         { _id: req.params.id },
-        { $set: { score: req.body.score } },
+        {
+          $set: {
+            score: req.body.score,
+            timeLastPlayed: req.body.timeLastPlayed,
+          },
+        },
         (err, result) => {
           if (err) {
             console.log(err);
