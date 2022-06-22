@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import Button from 'react-bootstrap/Button';
+import Button from "react-bootstrap/Button";
 // import { Button } from 'react-bootstrap';
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Navigate } from "react-router-dom";
@@ -7,11 +7,9 @@ import { useNavigate } from "react-router-dom";
 
 let playerScore = 0;
 
-
 export function Question() {
   let navigate = useNavigate();
   const difficultyArray = ["easy", "medium", "hard"];
-
 
   const [changeDifficultyState, setChangeDifficultyState] = useState(0);
   const [question, setQuestion] = useState("");
@@ -54,32 +52,29 @@ export function Question() {
         // .map((value) => ({ value, sort: Math.random() }))
         // .sort((a, b) => a.sort - b.sort)
         // .map(({ value }) => value);
-
       } catch (error) {
         console.log("error", error);
       }
     };
     fetchData();
-  }, [changeDifficultyState]);
+  }, [changeDifficultyState, difficultyArray]);
 
   const checkAnswer = (usersGuess) => {
     if (usersGuess === answer) {
       alert("CORRECT");
       //difficultyIndex += 1;
-      if (difficultyArray[changeDifficultyState] === "easy"){
-        playerScore +=1;
+      if (difficultyArray[changeDifficultyState] === "easy") {
+        playerScore += 1;
         console.log(playerScore);
-      }else if(difficultyArray[changeDifficultyState] === "medium"){
-        playerScore +=3;
+      } else if (difficultyArray[changeDifficultyState] === "medium") {
+        playerScore += 3;
         console.log(playerScore);
-      }else if(difficultyArray[changeDifficultyState] === "hard"){
-        playerScore +=5;
+      } else if (difficultyArray[changeDifficultyState] === "hard") {
+        playerScore += 5;
         console.log(playerScore);
-        navigate("/gameover", {state:{id: 1, score: playerScore}});
-        
+        navigate("/gameover", { state: { id: 1, score: playerScore } });
       }
 
-      
       setChangeDifficultyState(changeDifficultyState + 1);
       console.log(difficultyArray[changeDifficultyState]);
       // answerArray = [answer, incorrectAnswers[0], incorrectAnswers[1], incorrectAnswers[2]];
@@ -89,28 +84,30 @@ export function Question() {
       // .map(({ value }) => value)
     } else {
       alert("Answer Incorrect! Try again tomorrow!");
-      navigate("/gameover", {state:{id: 1, score: playerScore}});
+      navigate("/gameover", { state: { id: 1, score: playerScore } });
     }
     // if (difficultyArray[difficultyIndex] === "hard"){
     //   navigate("/");
     // }
-  };    
+  };
 
   function shuffleIndex(array) {
-    let currentIndex = array.length,  randomIndex;
-  
+    let currentIndex = array.length,
+      randomIndex;
+
     while (currentIndex !== 0) {
-  
       randomIndex = Math.floor(Math.random() * currentIndex);
       currentIndex--;
-  
+
       [array[currentIndex], array[randomIndex]] = [
-        array[randomIndex], array[currentIndex]];
+        array[randomIndex],
+        array[currentIndex],
+      ];
     }
-  
+
     return array;
   }
-  
+
   var arr = [0, 1, 2, 3];
   shuffleIndex(arr);
   console.log(arr);
@@ -122,35 +119,20 @@ export function Question() {
       </h1>
       <hr></hr>
       <p>Shuffled</p>
-      <> 
-        <Button
-          onClick={() => checkAnswer(shuffledAnswersArray[arr[0]])}>
-          {shuffledAnswersArray[arr[0]]}
+      <>
+        <Button onClick={() => checkAnswer(shuffledAnswersArray[arr[0]])}>
+          {textFormatFix(shuffledAnswersArray[arr[0]])}
         </Button>
-        <Button
-          onClick={() => checkAnswer(shuffledAnswersArray[arr[1]])}>
-          {shuffledAnswersArray[arr[1]]}
+        <Button onClick={() => checkAnswer(shuffledAnswersArray[arr[1]])}>
+          {textFormatFix(shuffledAnswersArray[arr[1]])}
         </Button>
-        <Button
-          onClick={() => checkAnswer(shuffledAnswersArray[arr[2]])}>
-          {shuffledAnswersArray[arr[2]]}
+        <Button onClick={() => checkAnswer(shuffledAnswersArray[arr[2]])}>
+          {textFormatFix(shuffledAnswersArray[arr[2]])}
         </Button>
-        <Button
-          onClick={() => checkAnswer(shuffledAnswersArray[arr[3]])}>
-          {shuffledAnswersArray[arr[3]]}
+        <Button onClick={() => checkAnswer(shuffledAnswersArray[arr[3]])}>
+          {textFormatFix(shuffledAnswersArray[arr[3]])}
         </Button>
       </>
-      {/* TODO: Fix formatting issue with buttons */}
-      <br></br>
-      <br></br>
-      <br></br>
-      <br />
-      <br />
-      <p>unshuffled</p>
-      <h2>{answer} : correct answer</h2>
-      <h2>{incorrectAnswers[0]}</h2>
-      <h2>{incorrectAnswers[1]}</h2>
-      <h2>{incorrectAnswers[2]}</h2>
     </>
   );
 }
