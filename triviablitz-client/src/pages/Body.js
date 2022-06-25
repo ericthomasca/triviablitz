@@ -10,7 +10,7 @@ export function Body({username, setUsername}) {
   // output HomePage, Question, Leaderboards, GameOver
   // conditional rendering
   const time = new Date();
-  time.setSeconds(time.getSeconds() + 600); // 10 minutes timer
+  time.setSeconds(time.getSeconds() + 30); // 10 minutes timer
 
   return (
     <>

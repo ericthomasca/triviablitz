@@ -122,16 +122,16 @@ export function Question() {
       <hr></hr>
       <>
         <Button onClick={() => checkAnswer(shuffledAnswersArray[arr[0]])}>
-          {textFormatFix(shuffledAnswersArray[arr[0]])}
+          {shuffledAnswersArray[arr[0]]}
         </Button>
         <Button onClick={() => checkAnswer(shuffledAnswersArray[arr[1]])}>
-          {textFormatFix(shuffledAnswersArray[arr[1]])}
+          {shuffledAnswersArray[arr[1]]}
         </Button>
         <Button onClick={() => checkAnswer(shuffledAnswersArray[arr[2]])}>
-          {textFormatFix(shuffledAnswersArray[arr[2]])}
+          {shuffledAnswersArray[arr[2]]}
         </Button>
         <Button onClick={() => checkAnswer(shuffledAnswersArray[arr[3]])}>
-          {textFormatFix(shuffledAnswersArray[arr[3]])}
+          {shuffledAnswersArray[arr[3]]}
         </Button>
       </>
     </>
