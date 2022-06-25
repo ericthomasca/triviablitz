@@ -4,6 +4,7 @@ import LogIn from "./LogIn";
 import Question from "./Question";
 import GameOver from './GameOver';
 import MyTimer from './Timer';
+import Scores from './Scores';
 
 export function Body({username, setUsername}) {
   // output HomePage, Question, Leaderboards, GameOver
@@ -19,7 +20,7 @@ export function Body({username, setUsername}) {
           <Route exact path="/game" element={<Question />} />
           <Route exact path="/gameover" element={<GameOver />}/>
           <Route exact path='/timer' element={<MyTimer expiryTimestamp={time} />}/>
-          
+          <Route exact path='/scores' element={<Scores />}/>
         </Routes>
       </Router>
     </>
