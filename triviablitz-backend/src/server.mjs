@@ -5,7 +5,8 @@ const app = express();
 app.use(express.json());
 app.listen(8800, () => console.log("Server started on port 8800"));
 
-const url = "mongodb://localhost:27017";
+const url = "mongodb://localhost:27017";  
+// TODO switch url to mongo atlas 
 
 app.get("/api/getUsers", (req, res) => {
   MongoClient.connect(url, { useNewUrlParser: true }, (err, client) => {
@@ -56,21 +57,14 @@ app.post("/api/addUser", (req, res) => {
       return;
     } else {
       const db = client.db("triviablitz");
-      db.collection("users").insertOne(
-        {
-          name: req.body.name,
-          score: req.body.score,
-          timeLastPlayed: req.body.timeLastPlayed,
-        },
-        (err, result) => {
-          if (err) {
-            console.log(err);
-            return;
-          } else {
-            res.send(result);
-          }
+      db.collection("users").insertOne(req.body, (err, result) => {
+        if (err) {
+          console.log(err);
+          return;
+        } else {
+          res.send(result);
         }
-      );
+      });
     }
   });
 });
