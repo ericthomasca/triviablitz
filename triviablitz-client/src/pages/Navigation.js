@@ -16,6 +16,7 @@ export function Navigation({username}){
               <Nav.Link href="/">Login</Nav.Link>
               {/* <Nav.Link href="/game">Game</Nav.Link> */}
               <Nav.Link href="/users">Users</Nav.Link>
+              <Nav.Link href="/scores">Scores</Nav.Link>
               
             </Nav>
           </Container>
