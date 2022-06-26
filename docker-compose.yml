@@ -1,44 +1,16 @@
 version: "3"
 services:
 
-  client:
+  triviablitz:
     build: 
-      context: ./triviablitz-client
+      context: .
       dockerfile: Dockerfile
     ports:
-      - 3000:3000
-    networks:
-      - mern-network
+      - 3000:80
     volumes:
       - ./triviablitz-client/src:/usr/app/src
       - ./triviablitz-client/public:/usr/app/public
-    depends_on:
-      - server
-    environment:
-      - REACT_APP_SERVER=http://localhost:5000
-      - CHOKIDAR_USEPOLLING=true
     command: npm start
-    stdin_open: true
-    tty: true
   
-  server:
-    build:
-      context: ./triviablitz-server
-      dockerfile: Dockerfile
-    ports:
-      - 5000:5000
-    networks:
-      - mern-network
-    volumes:
-      - ./server/src:/usr/app/src
-    depends_on:
-      - db
-    environment:
-      - MONGO_URL=mongodb://db:27017
-      - CLIENT=http://localhost:3000
-    command: npx nodemon src/server.mjs
 
-networks:
-  mern-network:
-    driver: bridge
 
