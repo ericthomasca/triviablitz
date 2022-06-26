@@ -5,7 +5,7 @@ import { useLocation } from "react-router-dom";
 
 let username = "user";
 
-export function Navigation({username}){
+export function Navigation(){
   // const location = useLocation();
     return (
       
@@ -17,7 +17,6 @@ export function Navigation({username}){
               <Nav.Link href="/scores">Scores</Nav.Link>
             </Nav>
           </Container>
-          Hello, {username}!
         </Navbar>      
     );
 }

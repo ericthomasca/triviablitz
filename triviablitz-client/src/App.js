@@ -6,11 +6,10 @@ import Navigation from "./pages/Navigation";
 function App() {
   const time = new Date();
   time.setSeconds(time.getSeconds() + 600); // 10 minutes timer
-  const [username, setUsername] = useState("");
   return (
     <>
-      <Navigation userName={username} setUsername={setUsername}/>
-      <Body userName={username} setUsername={setUsername}/>
+      <Navigation />
+      <Body />
     </>
   );
 }
