@@ -3,7 +3,7 @@ services:
 
   client:
     build: 
-      context: ./client
+      context: ./triviablitz-client
       dockerfile: Dockerfile
     ports:
       - 3000:3000
@@ -23,7 +23,7 @@ services:
   
   server:
     build:
-      context: ./server
+      context: ./triviablitz-server
       dockerfile: Dockerfile
     ports:
       - 5000:5000
@@ -38,19 +38,7 @@ services:
       - CLIENT=http://localhost:3000
     command: npx nodemon src/server.mjs
 
-  db:
-    image: mongo
-    ports:
-      - 27017:27017
-    networks:
-      - mern-network
-    volumes:
-      - mongo-data:/data/db
-
 networks:
   mern-network:
     driver: bridge
 
-volumes:
-  mongo-data:
-    driver: local
