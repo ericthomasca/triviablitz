@@ -1,17 +1,31 @@
 import React from 'react'
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import Button from "react-bootstrap/Button";
 // import { Button } from 'react-bootstrap';
 import "bootstrap/dist/css/bootstrap.min.css";
-import { Navigate } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
+import { useTimer } from 'react-timer-hook';
+import MyTimer from './Timer';
+
+export function QuestionPage() {
+  const time = new Date();
+  time.setSeconds(time.getSeconds() + 30); // 30 second timer
+  let [playerScore, setPlayerScore] = useState(0);
+  return(
+    <>
+    <MyTimer expiryTimestamp={time} playerScore={playerScore}/>
+    <Question setPlayerScore={setPlayerScore} playerScore={playerScore}/>
+    </>
+  )
+}
 
 
-let playerScore = 0;
+ 
 
-export function Question() {
+export function Question({setPlayerScore, playerScore}) {
   let navigate = useNavigate();
   const difficultyArray = ["easy", "medium", "hard"];
+  const ChildRef = useRef();
 
   const [changeDifficultyState, setChangeDifficultyState] = useState(0);
   const [question, setQuestion] = useState("");
@@ -59,22 +73,24 @@ export function Question() {
       }
     };
     fetchData();
-  }, [changeDifficultyState, difficultyArray]);
+  }, [changeDifficultyState]);
 
   const checkAnswer = (usersGuess) => {
     if (usersGuess === answer) {
       alert("CORRECT");
       //difficultyIndex += 1;
       if (difficultyArray[changeDifficultyState] === "easy") {
-        playerScore += 1;
+        setPlayerScore(playerScore += 1);
         console.log(playerScore);
       } else if (difficultyArray[changeDifficultyState] === "medium") {
-        playerScore += 3;
+        setPlayerScore(playerScore += 3);
         console.log(playerScore);
       } else if (difficultyArray[changeDifficultyState] === "hard") {
-        playerScore += 5;
-        console.log(playerScore);
-        navigate("/gameover", { state: { id: 1, score: playerScore } });
+        setPlayerScore(playerScore += 5);
+        console.log(`difficulty now set to hard`)
+        console.log(`score updated for hard ${playerScore}`);
+        
+        navigate("/gameover", { state: { id: 1, score: playerScore, timeRemaining: ChildRef.timeRemaining}});
       }
 
       setChangeDifficultyState(changeDifficultyState + 1);
@@ -86,7 +102,7 @@ export function Question() {
       // .map(({ value }) => value)
     } else {
       alert("Answer Incorrect! Try again tomorrow!");
-      navigate("/gameover", { state: { id: 1, score: playerScore } });
+      navigate("/gameover", { state: { id: 1, score: playerScore, timeRemaining: ChildRef.timeRemaining} });
     }
     // if (difficultyArray[difficultyIndex] === "hard"){
     //   navigate("/");
@@ -122,20 +138,21 @@ export function Question() {
       <hr></hr>
       <>
         <Button onClick={() => checkAnswer(shuffledAnswersArray[arr[0]])}>
-          {textFormatFix(shuffledAnswersArray[arr[0]])}
+          {shuffledAnswersArray[arr[0]]}
         </Button>
         <Button onClick={() => checkAnswer(shuffledAnswersArray[arr[1]])}>
-          {textFormatFix(shuffledAnswersArray[arr[1]])}
+          {shuffledAnswersArray[arr[1]]}
         </Button>
         <Button onClick={() => checkAnswer(shuffledAnswersArray[arr[2]])}>
-          {textFormatFix(shuffledAnswersArray[arr[2]])}
+          {shuffledAnswersArray[arr[2]]}
         </Button>
         <Button onClick={() => checkAnswer(shuffledAnswersArray[arr[3]])}>
-          {textFormatFix(shuffledAnswersArray[arr[3]])}
+          {shuffledAnswersArray[arr[3]]}
         </Button>
+        <h3>Correct: {answerArray[0]}</h3>
       </>
     </>
   );
 }
 
-export default Question;
+export default QuestionPage;
