@@ -1,21 +1,26 @@
 import express from "express";
 import { MongoClient } from "mongodb";
-import path from 'path';
+
 import { fileURLToPath } from 'url';
+import path from 'path';
 
 const app = express();
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
-// const __filename = fileURLToPath(import.meta.url);
-// const __dirname = path.dirname(__filename);
-// app.use(express.static(path.join(__dirname, '/build')));
+app.use(express.static(path.join(__dirname, '/build')));
 
 app.use(express.json());
+
 app.listen(8800, () => console.log("Server started on port 8800"));
 
-const url = "mongodb://localhost:27017";  
-// const url = 'mongodb+srv://triviablitz:BSl1Jqp62pHJoTeH@triviablitz.qdaeeqj.mongodb.net/?retryWrites=true&w=majority';
+
+const url = 'mongodb+srv://triviablitz:BSl1Jqp62pHJoTeH@triviablitz.qdaeeqj.mongodb.net/?retryWrites=true&w=majority';  
 // TODO switch url to mongo atlas 
 
+app.get('/', (req, res) => {
+  res.sendFile(__dirname + '/build/index.html')
+})
 
 app.get("/api/getUsers", (req, res) => {
   MongoClient.connect(url, { useNewUrlParser: true }, (err, client) => {
