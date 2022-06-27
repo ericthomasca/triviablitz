@@ -5,6 +5,7 @@ import QuestionPage from "./Question";
 import GameOver from './GameOver';
 import MyTimer from './Timer';
 import Scores from './Scores';
+import useSound from 'use-sound';
 import AboutPage from './About';
 
 export function Body() {

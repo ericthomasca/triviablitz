@@ -4,6 +4,8 @@ import { useNavigate } from "react-router-dom";
 import "./timerStyles.css";
 import ReactDOM from "react-dom";
 import { CountdownCircleTimer } from "react-countdown-circle-timer";
+import useSound from 'use-sound';
+import tickTok from '../sounds/switch-off.mp3'
 
 function TimerPage({expiryTimestamp, playerScore}){
   return(
@@ -28,6 +30,7 @@ const renderTime = ({ remainingTime })=>{
     isNewTimeFirstTick.current = true;
     prevTime.current = currentTime.current;
     currentTime.current = remainingTime;
+    
   } else {
     isNewTimeFirstTick.current = false;
   }
@@ -76,6 +79,8 @@ function MyTimer({ expiryTimestamp, playerScore, props, ref }) {
   const timeRemaing = () =>{
     pause()
     console.log(expiryTimestamp - seconds);
+    const [playTick] = useSound(tickTok);
+    playTick();
     console.log("expiryTimestamp - seconds");
     return expiryTimestamp - seconds
   }
@@ -88,7 +93,7 @@ function MyTimer({ expiryTimestamp, playerScore, props, ref }) {
         </div> */}
         {/* <p>{isRunning ? 'Running' : 'Not running'}</p>  */}
         {/* <button onClick={start}>Start</button> */}
-        {/* <button onClick={pause}>Pause</button> */}
+        <button onClick={pause}>Pause</button>
         {/* <button onClick={resume}>Resume</button> */}
         {/* <button onClick={() => {
           // Restarts to 5 minutes timer
