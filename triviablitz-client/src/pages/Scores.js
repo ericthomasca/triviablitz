@@ -1,5 +1,6 @@
 import React from "react";
 import Table from "react-bootstrap/Table";
+import "./Scores.css";
 
 function getUsers() {
   return fetch("/api/getUsers")
@@ -22,7 +23,7 @@ export function Scores() {
   console.log(users);
 
   return (
-    <Table striped bordered hover>
+    <Table striped bordered hover variant="dark" class="styled-table">
       <thead>
         <tr>
           <th>Name</th>
@@ -34,7 +35,7 @@ export function Scores() {
         {printUsers(users)}
       </tbody>
     </Table>
-  );
+  );  
 }
 
 export default Scores;

@@ -7,6 +7,7 @@ import { useNavigate } from "react-router-dom";
 import { useTimer } from 'react-timer-hook';
 import MyTimer from './Timer';
 import TimerPage from './Timer';
+import LockoutTimer from './LockoutTimer';
 
 export function QuestionPage() {
   const time = new Date();
@@ -15,16 +16,15 @@ export function QuestionPage() {
   return(
     <>
     <TimerPage expiryTimestamp={time} playerScore={playerScore}/>
+    
     <Question setPlayerScore={setPlayerScore} playerScore={playerScore}/>
     </>
   )
-}
-
-
- 
+} 
 
 export function Question({setPlayerScore, playerScore}) {
   let navigate = useNavigate();
+  
   const difficultyArray = ["easy", "medium", "hard"];
   const ChildRef = useRef();
   const [correctOrNot, setCorrectOrNot] = useState("");
@@ -64,12 +64,7 @@ export function Question({setPlayerScore, playerScore}) {
         const json = await response.json();
         setQuestion(textFormatFix(json.results[0].question));
         setAnswer(json.results[0].correct_answer);
-        setIncorrectAnswers(json.results[0].incorrect_answers);
-
-        // shuffledAnswersArray = answerArray
-        // .map((value) => ({ value, sort: Math.random() }))
-        // .sort((a, b) => a.sort - b.sort)
-        // .map(({ value }) => value);
+        setIncorrectAnswers(json.results[0].incorrect_answers);        
       } catch (error) {
         console.log("error", error);
       }
@@ -78,8 +73,7 @@ export function Question({setPlayerScore, playerScore}) {
   }, [changeDifficultyState]);
 
   const checkAnswer = (usersGuess) => {
-    if (usersGuess === answer) {
-      // alert("CORRECT");
+    if (usersGuess === answer) {     
       setCorrectOrNot("CORRECT")
       //difficultyIndex += 1;
       if (difficultyArray[changeDifficultyState] === "easy") {
@@ -106,22 +100,18 @@ export function Question({setPlayerScore, playerScore}) {
         // document.getElementById("l3").classList.add("bg-success");
         let delayInMilliseconds = 500; //0.5 second
         setPlayerScore(playerScore += 5);
-        setTimeout(function() {          
+        setTimeout(function() { 
+          let playCounter = 0;         
           navigate("/gameover", { state: { id: 1, score: playerScore, timeRemaining: ChildRef.timeRemaining}});
-        }, delayInMilliseconds);
-        
-       
+        }, delayInMilliseconds);   
       }
 
       setChangeDifficultyState(changeDifficultyState + 1);
-      console.log(difficultyArray[changeDifficultyState]);
-      // answerArray = [answer, incorrectAnswers[0], incorrectAnswers[1], incorrectAnswers[2]];
-      // shuffledAnswersArray = answerArray
-      // .map(value => ({ value, sort: Math.random() }))
-      // .sort((a, b) => a.sort - b.sort)
-      // .map(({ value }) => value)
+      console.log(difficultyArray[changeDifficultyState]);      
     } else {
-      alert("Answer Incorrect! Try again tomorrow!");
+      alert(`Answer Incorrect! The correct answer is:\n`
+      + answer + 
+      `\nTry again tomorrow!`);      
       navigate("/gameover", { state: { id: 1, score: playerScore, timeRemaining: ChildRef.timeRemaining} });
     }
     setCorrectOrNot("")
@@ -143,13 +133,13 @@ export function Question({setPlayerScore, playerScore}) {
         array[currentIndex],
       ];
     }
-
     return array;
   }
 
   var arr = [0, 1, 2, 3];
   shuffleIndex(arr);
   console.log(arr);
+  
 
   return (
     <>
@@ -158,7 +148,6 @@ export function Question({setPlayerScore, playerScore}) {
       </h1> */}
      
       <>
-
         <div style={{maxWidth: "70%", margin: "auto", textAlign: "center"}}>
         
           {/* <ul class="pagination pagination-lg" style={{textAlign: "center",  margin: "auto"}}>
@@ -213,6 +202,7 @@ export function Question({setPlayerScore, playerScore}) {
         </div>
         </div>
         <h3>Correct: {answerArray[0]}</h3>
+        {/* <h3>Times played today: playCounter</h3> // Just an idea to allow 3 plays per day */}
       </>
     </>
   );

@@ -7,11 +7,6 @@ import MyTimer from './Timer';
 import Scores from './Scores';
 
 export function Body() {
-  // output HomePage, Question, Leaderboards, GameOver
-  // conditional rendering
-  
-
-
   return (
     <>
       <Router>

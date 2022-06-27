@@ -4,8 +4,7 @@ import Scores from './Scores';
 // import useWindowSize from 'react-use/lib/useWindowSize'
 // import Confetti from 'react-confetti'
 
-export function GameOver(props){
-    
+export function GameOver(props){    
 
     // const renderConfetti = () => {
     //   if (location.state.score == 9) {
@@ -28,11 +27,10 @@ export function GameOver(props){
         timeLeft = 0;
     } 
     let total = location.state.score;
-    if(location.state.score == 9){
+    if(location.state.score === 9){
         total = (timeLeft * location.state.score) + location.state.score;
         timeBonus = (timeLeft * location.state.score);
         // setMessage("Congratulations!!");
-
     }
     if (isNaN(total)){
         total = 0;
