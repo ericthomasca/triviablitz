@@ -5,9 +5,9 @@ export function AboutPage(){
     return (        
     <>
         <div style={{color: "black", textAlign: "center"}}>        
-        <h1 style={{fontSize: "300%"}}><strong>About Triviablitz!</strong></h1>
+        <h1 style={{fontSize: "300%", fontFamily: "monospace"}}><strong>ABOUT TRIVIABLITZ!</strong></h1>
         <br></br>
-        <p style={{ border: "solid 4px #4D545E", padding: "6px"}}>
+        <p style={{ border: "solid 4px #4D545E", background: "grey", padding: "6px"}}>
         <strong>Triviablitz</strong> is a daily trivia game using MERN (MongoDB, Express, React, NodeJS). 
             The goal is to play daily as often as you can (once per 24 hours) and accumulate as many points as possible during the 3 rounds, 
             adding them to your monthly leaderboard score.   
