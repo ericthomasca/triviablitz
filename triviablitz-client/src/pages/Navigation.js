@@ -3,10 +3,13 @@ import React from 'react'
 import {Container, Nav} from 'react-bootstrap';
 import Navbar from 'react-bootstrap/Navbar';
 import { useLocation } from "react-router-dom";
+import useSound from 'use-sound';
+import menuClick from '../sounds/switch-on.mp3';
 
 let username = "user";
 
 export function Navigation(){
+  const [playMenuClick] = useSound(menuClick);
   // const location = useLocation();
     return (
       

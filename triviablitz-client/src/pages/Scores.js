@@ -7,8 +7,10 @@ function getUsers() {
     .then(users => users);
 }
 function printUsers(users) {
+  
+  
   return users.map(user => (
-    <tr key={user.id}>
+    <tr key={user._id}>
       <td>{user.name}</td>
       <td>{user.score}</td>
     </tr>

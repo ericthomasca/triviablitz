@@ -7,6 +7,13 @@ import { useNavigate } from "react-router-dom";
 import { useTimer } from 'react-timer-hook';
 import MyTimer from './Timer';
 import TimerPage from './Timer';
+import useSound from 'use-sound';
+import boopSfx from '../sounds/boop.mp3';
+import dundundun from '../sounds/dun-dun-dun.mp3';
+import cheer from '../sounds/fanfare.mp3';
+import wrong from '../sounds/disable-sound.mp3';
+import right from '../sounds/enable-sound.mp3';
+
 
 export function QuestionPage() {
   const time = new Date();
@@ -25,6 +32,9 @@ export function QuestionPage() {
 
 export function Question({setPlayerScore, playerScore}) {
   let navigate = useNavigate();
+  const [play] = useSound(dundundun);
+  const [playCorrect] = useSound(right);
+  const [playWrong] = useSound(wrong);
   const difficultyArray = ["easy", "medium", "hard"];
   const ChildRef = useRef();
   const [correctOrNot, setCorrectOrNot] = useState("");
@@ -80,30 +90,24 @@ export function Question({setPlayerScore, playerScore}) {
   const checkAnswer = (usersGuess) => {
     if (usersGuess === answer) {
       // alert("CORRECT");
+      playCorrect();
       setCorrectOrNot("CORRECT")
       //difficultyIndex += 1;
       if (difficultyArray[changeDifficultyState] === "easy") {
         setPlayerScore(playerScore += 1);
         console.log(playerScore);
-        // document.getElementById("l1").classList.remove("bg-light");
-        // document.getElementById("l1").classList.add("bg-success");
+        
         document.getElementById("progress").style.width = "33%";
-        // document.getElementById("l2").classList.remove("bg-secondary");
-        // document.getElementById("l2").classList.add("bg-light");
+        
       } else if (difficultyArray[changeDifficultyState] === "medium") {
         setPlayerScore(playerScore += 3);
         console.log(playerScore);
-        // document.getElementById("l2").classList.remove("bg-light");
-        // document.getElementById("l2").classList.add("bg-success");
+        
         document.getElementById("progress").style.width = "66%";
-        // document.getElementById("l3").classList.remove("bg-secondary");
-        // document.getElementById("l3").classList.add("bg-light");
-        // document.getElementById("l2").classList.remove("active");
-        // document.getElementById("l3").classList.add("active");
+        
       } else if (difficultyArray[changeDifficultyState] === "hard") {
         document.getElementById("progress").style.width = "100%";
-        // document.getElementById("l3").classList.remove("bg-light");
-        // document.getElementById("l3").classList.add("bg-success");
+        
         let delayInMilliseconds = 500; //0.5 second
         setPlayerScore(playerScore += 5);
         setTimeout(function() {          
@@ -121,6 +125,7 @@ export function Question({setPlayerScore, playerScore}) {
       // .sort((a, b) => a.sort - b.sort)
       // .map(({ value }) => value)
     } else {
+      playWrong();
       alert("Answer Incorrect! Try again tomorrow!");
       navigate("/gameover", { state: { id: 1, score: playerScore, timeRemaining: ChildRef.timeRemaining} });
     }

@@ -1,5 +1,9 @@
 import React, { useState } from 'react'
 import { useLocation } from "react-router-dom";
+import dundundun from '../sounds/dun-dun-dun.mp3';
+import useSound from 'use-sound';
+import cheer from '../sounds/fanfare.mp3'
+import drums from '../sounds/909-drums.mp3'
 import Scores from './Scores';
 // import useWindowSize from 'react-use/lib/useWindowSize'
 // import Confetti from 'react-confetti'
@@ -18,24 +22,34 @@ export function GameOver(props){
     //   }
     // }
 
+    const [playDunDunDun] = useSound(dundundun);
+    const [playCheer] = useSound(cheer);
+    const [playdrums] = useSound(drums);
     const location = useLocation();
     let timeLeft = location.state.timeRemaing;
     let timeBonus = 0;
-    const [message, setMessage] = useState("Game Over!");
+    const [message, setAMessage] = useState("Game Over!");
     // const { width, height } = useWindowSize()
     // console.log(timeLeft);
     if( isNaN(timeLeft)){
         timeLeft = 0;
     } 
     let total = location.state.score;
-    if(location.state.score == 9){
+    if(location.state.score === 9){
+        // setAMessage("Congratulations!")
+        playCheer();
         total = (timeLeft * location.state.score) + location.state.score;
         timeBonus = (timeLeft * location.state.score);
         // setMessage("Congratulations!!");
 
     }
-    if (isNaN(total)){
+    if( location.state.score >= 1 && location.state.score <= 8){
+        playdrums()
+
+    }
+    if (isNaN(total) || total == 0){
         total = 0;
+        playDunDunDun();
     }
     if (isNaN(timeBonus)){
         timeBonus = 0;

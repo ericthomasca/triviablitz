@@ -2,18 +2,25 @@ import React from 'react';
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Button, Form } from 'react-bootstrap';
+import useSound from 'use-sound';
+import plunger from '../sounds/plunger.mp3';
+import nope from '../sounds/glug-b.mp3';
 
 
 export function LogIn() {
   const [user, setUser] = useState("");
   const [score, setScore] = useState(0);
   const [timeLastPlayed, setTimeLastPlayed] = useState(new Date().getTime());
-
+  const [playPlunger] = useSound(plunger);
+  const [playNope] = useSound(nope);
   let navigate = useNavigate();
   const checkName = () => {
+    
     if (document.getElementById("name").value === "") {
+      playNope();
       alert("Please enter a name");
     } else {
+      playPlunger();
       // setUsername(document.getElementById("name"));
       // alert(user)
       // console.log(username);
@@ -46,9 +53,9 @@ export function LogIn() {
       <br></br>
       <h1>TriviaBlitz!</h1>
       <Form onSubmit={handleSubmit}>
-        <label>Player name:</label><br></br>
-        <input id="name" type="text"></input><br></br>
-        <Button type="button" class="btn btn-success" required value={user} onClick={() => checkName()} onChange={(e)=> {setUser(e.target.value)}}>Start Game</Button>
+        <h2>Player name:</h2><br></br>
+        <input id="name" type="text"></input><br></br><br></br>
+        <Button type="button" class="btn btn-info" required value={user} onClick={() => checkName()} onChange={(e)=> {setUser(e.target.value)}}>Start Game</Button>
       </Form>
       </div>
     </>
