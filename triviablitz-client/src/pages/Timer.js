@@ -93,7 +93,7 @@ function MyTimer({ expiryTimestamp, playerScore, props, ref }) {
         </div> */}
         {/* <p>{isRunning ? 'Running' : 'Not running'}</p>  */}
         {/* <button onClick={start}>Start</button> */}
-        <button onClick={pause}>Pause</button>
+        {/* <button onClick={pause}>Pause</button> */}
         {/* <button onClick={resume}>Resume</button> */}
         {/* <button onClick={() => {
           // Restarts to 5 minutes timer
