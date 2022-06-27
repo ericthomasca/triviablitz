@@ -1,7 +1,22 @@
 import React, { useEffect, useState } from "react";
 import Table from "react-bootstrap/Table";
 
+function getUsers() {
+  return fetch("/api/getUsers")
+    .then(response => response.json())
+    .then(users => users);
+}
+function printUsers(users) {
+  return users.map(user => (
+    <tr key={user.id}>
+      <td>{user.name}</td>
+      <td>{user.score}</td>
+    </tr>
+  ));
+}
+
 export function Scores() {
+
 
   const [users, setUsers] = useState([]);
 
@@ -10,6 +25,7 @@ export function Scores() {
       .then(res => res.json())
       .then(data => setUsers(data));
   }, []);
+
 
   console.log(users);
 
@@ -23,6 +39,7 @@ export function Scores() {
         </tr>
       </thead>
       <tbody>
+
         {users.map(user => (
           <tr key={user._id}>
             <td>{user.name}</td>
@@ -30,6 +47,7 @@ export function Scores() {
             <td>{user.timeLastPlayed}</td>
           </tr>
         ))}
+
       </tbody>
     </Table>
   );
