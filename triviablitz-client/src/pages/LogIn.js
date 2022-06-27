@@ -1,6 +1,7 @@
-import React from 'react'
+import React from 'react';
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { Button } from 'react-bootstrap';
 
 
 export function LogIn() {
@@ -40,11 +41,14 @@ export function LogIn() {
 
   return (
     <>
+      <hr/>
+      <br></br>
+      <br></br>
       <h1>TriviaBlitz!</h1>
       <form onSubmit={handleSubmit}>
         <label>Player name:</label>
         <input id="name" type="text"></input>
-        <button required value={user} onClick={() => checkName()} onChange={(e)=> {setUser(e.target.value)}}>Start Game</button>
+        <Button type="button" class="btn btn-success" required value={user} onClick={() => checkName()} onChange={(e)=> {setUser(e.target.value)}}>Start Game</Button>
       </form>
     </>
   );
