@@ -1,5 +1,6 @@
 import express from "express";
 import { MongoClient } from "mongodb";
+
 import { fileURLToPath } from 'url';
 import path from 'path';
 
@@ -8,9 +9,11 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 app.use(express.static(path.join(__dirname, '/build')));
+
 app.use(express.json());
 
 app.listen(8800, () => console.log("Server started on port 8800"));
+
 
 const url = 'mongodb+srv://triviablitz:BSl1Jqp62pHJoTeH@triviablitz.qdaeeqj.mongodb.net/?retryWrites=true&w=majority';  
 // TODO switch url to mongo atlas 

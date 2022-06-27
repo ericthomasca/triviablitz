@@ -1,9 +1,39 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Table from "react-bootstrap/Table";
+import "./Scores.css";
+
+function getUsers() {
+  return fetch("/api/getUsers")
+    .then(response => response.json())
+    .then(users => users);
+}
+function printUsers(users) {
+  
+  
+  return users.map(user => (
+    <tr key={user._id}>
+      <td>{user.name}</td>
+      <td>{user.score}</td>
+    </tr>
+  ));
+}
 
 export function Scores() {
+
+
+  const [users, setUsers] = useState([]);
+
+  useEffect(() => {
+    fetch("http://localhost:8800/api/getUsers")
+      .then(res => res.json())
+      .then(data => setUsers(data));
+  }, []);
+
+
+  console.log(users);
+
   return (
-    <Table striped bordered hover>
+    <Table striped bordered hover variant="dark" class="styled-table">
       <thead>
         <tr>
           <th>Name</th>
@@ -12,24 +42,18 @@ export function Scores() {
         </tr>
       </thead>
       <tbody>
-        <tr>
-          <td>Mark</td>
-          <td>15</td>
-          <td>2022-06-22 14:55:55 NST</td>
-        </tr>
-        <tr>
-          <td>Jacob</td>
-          <td>23</td>
-          <td>2022-06-21 08:23:44 NST</td>
-        </tr>
-        <tr>
-          <td>Larry</td>
-          <td>16</td>
-          <td>2022-05-24 21:22:33 NST</td>
-        </tr>
+
+        {users.map(user => (
+          <tr key={user._id}>
+            <td>{user.name}</td>
+            <td>{user.score}</td>
+            <td>{user.timeLastPlayed}</td>
+          </tr>
+        ))}
+
       </tbody>
     </Table>
-  );
+  );  
 }
 
 export default Scores;
