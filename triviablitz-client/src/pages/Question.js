@@ -7,6 +7,7 @@ import { useNavigate } from "react-router-dom";
 import { useTimer } from 'react-timer-hook';
 import MyTimer from './Timer';
 import TimerPage from './Timer';
+import LockoutTimer from './LockoutTimer';
 
 export function QuestionPage() {
   const time = new Date();
@@ -15,16 +16,15 @@ export function QuestionPage() {
   return(
     <>
     <TimerPage expiryTimestamp={time} playerScore={playerScore}/>
+    
     <Question setPlayerScore={setPlayerScore} playerScore={playerScore}/>
     </>
   )
-}
-
-
- 
+} 
 
 export function Question({setPlayerScore, playerScore}) {
   let navigate = useNavigate();
+  
   const difficultyArray = ["easy", "medium", "hard"];
   const ChildRef = useRef();
   const [correctOrNot, setCorrectOrNot] = useState("");
@@ -100,7 +100,8 @@ export function Question({setPlayerScore, playerScore}) {
         // document.getElementById("l3").classList.add("bg-success");
         let delayInMilliseconds = 500; //0.5 second
         setPlayerScore(playerScore += 5);
-        setTimeout(function() {          
+        setTimeout(function() { 
+          let playCounter = 0;         
           navigate("/gameover", { state: { id: 1, score: playerScore, timeRemaining: ChildRef.timeRemaining}});
         }, delayInMilliseconds);   
       }
@@ -138,6 +139,7 @@ export function Question({setPlayerScore, playerScore}) {
   var arr = [0, 1, 2, 3];
   shuffleIndex(arr);
   console.log(arr);
+  
 
   return (
     <>
@@ -200,6 +202,7 @@ export function Question({setPlayerScore, playerScore}) {
         </div>
         </div>
         <h3>Correct: {answerArray[0]}</h3>
+        {/* <h3>Times played today: playCounter</h3> // Just an idea to allow 3 plays per day */}
       </>
     </>
   );

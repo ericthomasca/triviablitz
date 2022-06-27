@@ -2,9 +2,14 @@ import React from 'react';
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Button, Form } from 'react-bootstrap';
+import LockoutTimer from './LockoutTimer';
 
 
 export function LogIn() {
+  const time = new Date();
+    time.setSeconds(time.getSeconds());
+    time.setMinutes(time.getMinutes());
+    time.setHours(time.getHours() + 24);
   const [user, setUser] = useState("");
   const [score, setScore] = useState(0);
   const [timeLastPlayed, setTimeLastPlayed] = useState(new Date().getTime());
@@ -48,6 +53,7 @@ export function LogIn() {
         <input id="name" type="text"></input><br></br>
         <Button type="button" class="btn btn-success" required value={user} onClick={() => checkName()} onChange={(e)=> {setUser(e.target.value)}}>Start Game</Button>
       </Form>
+      <LockoutTimer expiryTimestamp={time}/>
       </div>
     </>
   );
