@@ -51,11 +51,11 @@ export function LogIn() {
     <div style={{textAlign: "center", color: "white"}}>
       <br></br>
       <br></br>
-      <h1>TriviaBlitz!</h1>
+      {/* <h1>TriviaBlitz!</h1> */}
       <Form onSubmit={handleSubmit}>
         <h2>Player name:</h2><br></br>
         <input id="name" type="text"></input><br></br><br></br>
-        <Button type="button" class="btn btn-info" required value={user} onClick={() => checkName()} onChange={(e)=> {setUser(e.target.value)}}>Start Game</Button>
+        <Button type="button" class="btn btn-primary" required value={user} onClick={() => checkName()} onChange={(e)=> {setUser(e.target.value)}}>Start Game</Button>
       </Form>
       </div>
     </>
