@@ -1,9 +1,10 @@
-import React from 'react'
+import React from 'react';
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { Button } from 'react-bootstrap';
 
 
-export function LogIn({username, setUsername = (f) =>f}) {
+export function LogIn() {
   const [user, setUser] = useState("");
   const [score, setScore] = useState(0);
   const [timeLastPlayed, setTimeLastPlayed] = useState(new Date().getTime());
@@ -13,9 +14,9 @@ export function LogIn({username, setUsername = (f) =>f}) {
     if (document.getElementById("name").value === "") {
       alert("Please enter a name");
     } else {
-      setUsername(document.getElementById("name").value);
-      alert(document.getElementById("name").value)
-      console.log(username);
+      // setUsername(document.getElementById("name"));
+      // alert(user)
+      // console.log(username);
       navigate("/game");
     }
   };
@@ -27,6 +28,8 @@ export function LogIn({username, setUsername = (f) =>f}) {
       timeLastPlayed: timeLastPlayed
 
     }
+    alert(user);
+
 
     fetch('/api/addUser', {
       method: 'POST',
@@ -38,11 +41,14 @@ export function LogIn({username, setUsername = (f) =>f}) {
 
   return (
     <>
+      <hr/>
+      <br></br>
+      <br></br>
       <h1>TriviaBlitz!</h1>
       <form onSubmit={handleSubmit}>
         <label>Player name:</label>
         <input id="name" type="text"></input>
-        <button required value={user} onClick={() => checkName()} onChange={(e)=> {setUser(e.target.value); setUsername(e.target.value)}}>Start Game</button>
+        <Button type="button" class="btn btn-success" required value={user} onClick={() => checkName()} onChange={(e)=> {setUser(e.target.value)}}>Start Game</Button>
       </form>
     </>
   );

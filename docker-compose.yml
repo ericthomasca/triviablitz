@@ -1,0 +1,16 @@
+version: "3"
+services:
+
+  triviablitz:
+    build: 
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - 3000:80
+    volumes:
+      - ./triviablitz-client/src:/usr/app/src
+      - ./triviablitz-client/public:/usr/app/public
+    command: npm start
+  
+
+

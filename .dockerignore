@@ -1,0 +1,5 @@
+node_modules
+.dockerignore
+Dockerfile
+triviablitz-backend/node_modules
+triviablitz-client/node_modules
