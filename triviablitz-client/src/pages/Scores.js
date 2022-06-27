@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Table from "react-bootstrap/Table";
 import "./Scores.css";
 
@@ -18,8 +18,16 @@ function printUsers(users) {
 
 export function Scores() {
 
-  const [users, setUsers] = React.useState([]);
-  setUsers(getUsers());
+
+  const [users, setUsers] = useState([]);
+
+  useEffect(() => {
+    fetch("http://localhost:8800/api/getUsers")
+      .then(res => res.json())
+      .then(data => setUsers(data));
+  }, []);
+
+
   console.log(users);
 
   return (
@@ -32,7 +40,15 @@ export function Scores() {
         </tr>
       </thead>
       <tbody>
-        {printUsers(users)}
+
+        {users.map(user => (
+          <tr key={user._id}>
+            <td>{user.name}</td>
+            <td>{user.score}</td>
+            <td>{user.timeLastPlayed}</td>
+          </tr>
+        ))}
+
       </tbody>
     </Table>
   );  
