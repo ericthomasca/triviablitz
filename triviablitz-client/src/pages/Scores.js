@@ -1,7 +1,18 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Table from "react-bootstrap/Table";
 
 export function Scores() {
+
+  const [users, setUsers] = useState([]);
+
+  useEffect(() => {
+    fetch("http://localhost:8800/api/getUsers")
+      .then(res => res.json())
+      .then(data => setUsers(data));
+  }, []);
+
+  console.log(users);
+
   return (
     <Table striped bordered hover>
       <thead>
@@ -12,21 +23,13 @@ export function Scores() {
         </tr>
       </thead>
       <tbody>
-        <tr>
-          <td>Mark</td>
-          <td>15</td>
-          <td>2022-06-22 14:55:55 NST</td>
-        </tr>
-        <tr>
-          <td>Jacob</td>
-          <td>23</td>
-          <td>2022-06-21 08:23:44 NST</td>
-        </tr>
-        <tr>
-          <td>Larry</td>
-          <td>16</td>
-          <td>2022-05-24 21:22:33 NST</td>
-        </tr>
+        {users.map(user => (
+          <tr key={user._id}>
+            <td>{user.name}</td>
+            <td>{user.score}</td>
+            <td>{user.timeLastPlayed}</td>
+          </tr>
+        ))}
       </tbody>
     </Table>
   );

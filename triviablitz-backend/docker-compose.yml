@@ -6,7 +6,7 @@ services:
       context: .
       dockerfile: Dockerfile
     ports:
-      - 3000:80
+      - 8800:80
     volumes:
       - ./triviablitz-client/src:/usr/app/src
       - ./triviablitz-client/public:/usr/app/public
