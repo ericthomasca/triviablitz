@@ -8,11 +8,7 @@ import { CountdownCircleTimer } from "react-countdown-circle-timer";
 function LockoutTimer({expiryTimestamp, playerScore}){
     return(
       <>
-        <div className='timer-wrapper'>
-          <CountdownCircleTimer isPlaying duration={86400} colors={["#03ff46", "#F7B801", "#A30000", "#A30000"]} colorsTime={[30, 15, 10, 0]}>
-          {/* {renderTime} */}
-          </CountdownCircleTimer>
-        </div>
+        <div className='timer-wrapper'></div>
         <MyTimer expiryTimestamp={expiryTimestamp} playerScore={playerScore}/>
       </>
     )
@@ -55,10 +51,11 @@ const time = new Date();
   
     return (
       <div>
-        <div style={{textAlign: 'center', color: 'white'}}>
-          <div style={{fontSize: '60px'}}>
-          <span>{hours}</span>:<span>{minutes}</span>:<span>{seconds}</span><h1 style={{ fontSize: "30%"}}>Until next play unlocked!</h1>
-            
+        <div style={{textAlign: 'center', color: 'black'}}>
+          <div style={{fontSize: '80px'}}>
+            <br></br>
+          <h1 style={{ fontSize: "70%", fontFamily: 'fantasy' }}>ADD TO YOUR SCORE IN:</h1>            
+          <span>{hours}</span>:<span>{minutes}</span>:<span>{seconds}</span>
           </div>
           {/* <p>{isRunning ? 'Running' : 'Not running'}</p>  */}
           {/* <button onClick={start}>Start</button> */}

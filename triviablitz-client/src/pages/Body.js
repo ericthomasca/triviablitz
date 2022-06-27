@@ -5,6 +5,7 @@ import QuestionPage from "./Question";
 import GameOver from './GameOver';
 import MyTimer from './Timer';
 import Scores from './Scores';
+import AboutPage from './About';
 
 export function Body() {
   return (
@@ -16,6 +17,7 @@ export function Body() {
           <Route exact path="/gameover" element={<GameOver />}/>
           <Route exact path='/timer' element={<MyTimer />}/>
           <Route exact path='/scores' element={<Scores />}/>
+          <Route exact path='/about' element={<AboutPage/>}/>
         </Routes>
       </Router>
     </>

@@ -16,6 +16,7 @@ export function Navigation(){
             <Nav className="me-auto">
               <Nav.Link href="/">Login</Nav.Link>
               <Nav.Link href="/scores">Scores</Nav.Link>
+              <Nav.Link href="/about">About</Nav.Link>
             </Nav>
           </Container>
         </Navbar>      
