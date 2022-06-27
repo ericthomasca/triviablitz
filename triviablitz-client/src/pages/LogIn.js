@@ -26,10 +26,8 @@ export function LogIn() {
       user: user,
       score: score,
       timeLastPlayed: timeLastPlayed
-
     }
     alert(user);
-
 
     fetch('/api/addUser', {
       method: 'POST',

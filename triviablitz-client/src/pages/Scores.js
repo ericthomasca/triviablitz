@@ -1,9 +1,10 @@
 import React from "react";
 import Table from "react-bootstrap/Table";
+import "./Scores.css";
 
 export function Scores() {
   return (
-    <Table striped bordered hover>
+    <Table striped bordered hover variant="dark" class="styled-table">
       <thead>
         <tr>
           <th>Name</th>
@@ -29,7 +30,7 @@ export function Scores() {
         </tr>
       </tbody>
     </Table>
-  );
+  );  
 }
 
 export default Scores;

@@ -64,12 +64,7 @@ export function Question({setPlayerScore, playerScore}) {
         const json = await response.json();
         setQuestion(textFormatFix(json.results[0].question));
         setAnswer(json.results[0].correct_answer);
-        setIncorrectAnswers(json.results[0].incorrect_answers);
-
-        // shuffledAnswersArray = answerArray
-        // .map((value) => ({ value, sort: Math.random() }))
-        // .sort((a, b) => a.sort - b.sort)
-        // .map(({ value }) => value);
+        setIncorrectAnswers(json.results[0].incorrect_answers);        
       } catch (error) {
         console.log("error", error);
       }
@@ -78,8 +73,7 @@ export function Question({setPlayerScore, playerScore}) {
   }, [changeDifficultyState]);
 
   const checkAnswer = (usersGuess) => {
-    if (usersGuess === answer) {
-      // alert("CORRECT");
+    if (usersGuess === answer) {     
       setCorrectOrNot("CORRECT")
       //difficultyIndex += 1;
       if (difficultyArray[changeDifficultyState] === "easy") {
@@ -108,18 +102,11 @@ export function Question({setPlayerScore, playerScore}) {
         setPlayerScore(playerScore += 5);
         setTimeout(function() {          
           navigate("/gameover", { state: { id: 1, score: playerScore, timeRemaining: ChildRef.timeRemaining}});
-        }, delayInMilliseconds);
-        
-       
+        }, delayInMilliseconds);   
       }
 
       setChangeDifficultyState(changeDifficultyState + 1);
-      console.log(difficultyArray[changeDifficultyState]);
-      // answerArray = [answer, incorrectAnswers[0], incorrectAnswers[1], incorrectAnswers[2]];
-      // shuffledAnswersArray = answerArray
-      // .map(value => ({ value, sort: Math.random() }))
-      // .sort((a, b) => a.sort - b.sort)
-      // .map(({ value }) => value)
+      console.log(difficultyArray[changeDifficultyState]);      
     } else {
       alert("Answer Incorrect! Try again tomorrow!");
       navigate("/gameover", { state: { id: 1, score: playerScore, timeRemaining: ChildRef.timeRemaining} });
@@ -143,7 +130,6 @@ export function Question({setPlayerScore, playerScore}) {
         array[currentIndex],
       ];
     }
-
     return array;
   }
 
@@ -158,7 +144,6 @@ export function Question({setPlayerScore, playerScore}) {
       </h1> */}
      
       <>
-
         <div style={{maxWidth: "70%", margin: "auto", textAlign: "center"}}>
         
           {/* <ul class="pagination pagination-lg" style={{textAlign: "center",  margin: "auto"}}>
