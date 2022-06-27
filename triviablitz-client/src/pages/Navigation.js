@@ -20,6 +20,8 @@ export function Navigation(){
               <Nav.Link href="/">Login</Nav.Link>
             <img src='images/TriviaBlitz Logo.png' style={{width:"15%", height:"15%", left:"70%", margin: "auto", display:"block"}}/>
             <Nav.Link href="/scores">Scores</Nav.Link>
+              <Nav.Link href="/scores">Scores</Nav.Link>
+              <Nav.Link href="/about">About</Nav.Link>
             </Nav>
           </Container>
         </Navbar> */}

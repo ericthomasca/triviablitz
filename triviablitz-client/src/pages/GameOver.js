@@ -8,8 +8,7 @@ import Scores from './Scores';
 // import useWindowSize from 'react-use/lib/useWindowSize'
 // import Confetti from 'react-confetti'
 
-export function GameOver(props){
-    
+export function GameOver(props){    
 
     // const renderConfetti = () => {
     //   if (location.state.score == 9) {
@@ -41,7 +40,6 @@ export function GameOver(props){
         total = (timeLeft * location.state.score) + location.state.score;
         timeBonus = (timeLeft * location.state.score);
         // setMessage("Congratulations!!");
-
     }
     if( location.state.score >= 1 && location.state.score <= 8){
         playdrums()

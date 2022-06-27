@@ -6,13 +6,9 @@ import GameOver from './GameOver';
 import MyTimer from './Timer';
 import Scores from './Scores';
 import useSound from 'use-sound';
+import AboutPage from './About';
 
 export function Body() {
-  // output HomePage, Question, Leaderboards, GameOver
-  // conditional rendering
-  
-
-
   return (
     <>
       <Router>
@@ -22,6 +18,7 @@ export function Body() {
           <Route exact path="/gameover" element={<GameOver />}/>
           <Route exact path='/timer' element={<MyTimer />}/>
           <Route exact path='/scores' element={<Scores />}/>
+          <Route exact path='/about' element={<AboutPage/>}/>
         </Routes>
       </Router>
     </>

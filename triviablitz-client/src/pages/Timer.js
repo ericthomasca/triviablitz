@@ -15,7 +15,6 @@ function TimerPage({expiryTimestamp, playerScore}){
         {renderTime}
         </CountdownCircleTimer>
       </div>
-
       <MyTimer expiryTimestamp={expiryTimestamp} playerScore={playerScore}/>
     </>
   )
@@ -85,7 +84,6 @@ function MyTimer({ expiryTimestamp, playerScore, props, ref }) {
     console.log("expiryTimestamp - seconds");
     return expiryTimestamp - seconds
   }
-
 
   return (
     <div>

@@ -8,8 +8,7 @@ import Navigation from "./pages/Navigation";
 
 
 function App() {
-  const time = new Date();
-  time.setSeconds(time.getSeconds() + 600); // 10 minutes timer
+  const time = new Date();  
   return (
     <>
       <div className="backgroundDiv">
