@@ -12,7 +12,7 @@ export function Navigation(){
       
         <Navbar class="navbar navbar-expand-lg navbar-dark bg-primary" style={{backgroundColor: "#e83283"}}>
           <Container class="container-fluid">
-            <Navbar.Brand href="#home">TriviaBlitz</Navbar.Brand>
+            <Navbar.Brand href="/">TriviaBlitz</Navbar.Brand>
             <Nav className="me-auto">
               <Nav.Link href="/">Login</Nav.Link>
               <Nav.Link href="/scores">Scores</Nav.Link>

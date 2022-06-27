@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { useLocation } from "react-router-dom";
+import Scores from './Scores';
 // import useWindowSize from 'react-use/lib/useWindowSize'
 // import Confetti from 'react-confetti'
 
@@ -41,6 +42,7 @@ export function GameOver(props){
     }
     return(
         <>
+        <div style={{color: "white", textAlign: "center"}}>
         {/* {renderConfetti()} */}
         <h1>{message}</h1>
         <br></br>
@@ -51,6 +53,8 @@ export function GameOver(props){
         <p>Round 1 - EASY: 1 point </p>
         <p>Round 2 - MEDIUM: 3 points </p>
         <p>Round 3 - HARD: 5 points </p>
+        </div>
+        {/* <Scores /> */}
         </>
     )
 }
