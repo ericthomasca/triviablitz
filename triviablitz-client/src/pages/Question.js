@@ -85,25 +85,25 @@ export function Question({setPlayerScore, playerScore}) {
       if (difficultyArray[changeDifficultyState] === "easy") {
         setPlayerScore(playerScore += 1);
         console.log(playerScore);
-        document.getElementById("l1").classList.remove("bg-light");
-        document.getElementById("l1").classList.add("bg-success");
+        // document.getElementById("l1").classList.remove("bg-light");
+        // document.getElementById("l1").classList.add("bg-success");
         document.getElementById("progress").style.width = "33%";
-        document.getElementById("l2").classList.remove("bg-secondary");
-        document.getElementById("l2").classList.add("bg-light");
+        // document.getElementById("l2").classList.remove("bg-secondary");
+        // document.getElementById("l2").classList.add("bg-light");
       } else if (difficultyArray[changeDifficultyState] === "medium") {
         setPlayerScore(playerScore += 3);
         console.log(playerScore);
-        document.getElementById("l2").classList.remove("bg-light");
-        document.getElementById("l2").classList.add("bg-success");
+        // document.getElementById("l2").classList.remove("bg-light");
+        // document.getElementById("l2").classList.add("bg-success");
         document.getElementById("progress").style.width = "66%";
-        document.getElementById("l3").classList.remove("bg-secondary");
-        document.getElementById("l3").classList.add("bg-light");
+        // document.getElementById("l3").classList.remove("bg-secondary");
+        // document.getElementById("l3").classList.add("bg-light");
         // document.getElementById("l2").classList.remove("active");
         // document.getElementById("l3").classList.add("active");
       } else if (difficultyArray[changeDifficultyState] === "hard") {
         document.getElementById("progress").style.width = "100%";
-        document.getElementById("l3").classList.remove("bg-light");
-        document.getElementById("l3").classList.add("bg-success");
+        // document.getElementById("l3").classList.remove("bg-light");
+        // document.getElementById("l3").classList.add("bg-success");
         let delayInMilliseconds = 500; //0.5 second
         setPlayerScore(playerScore += 5);
         setTimeout(function() {          
@@ -173,7 +173,7 @@ export function Question({setPlayerScore, playerScore}) {
             </li>
           </ul> */}
           <h1 style={{textAlign: "center", fontSize: "150%", color: "white"}}>
-          {question}
+          {question} - {difficultyArray[changeDifficultyState]}
         </h1>
         <h3>{correctOrNot}</h3>
         <br/>
@@ -204,12 +204,12 @@ export function Question({setPlayerScore, playerScore}) {
               {shuffledAnswersArray[arr[3]]}
             </Button> */}
         <br></br>
-        <span class="badge bg-light" id='l1'>Easy</span>&nbsp;&nbsp;&nbsp;&nbsp;
-        <span class="badge bg-secondary" id='l2'>Medium</span>&nbsp;&nbsp;&nbsp;&nbsp;
-        <span class="badge bg-secondary" id='l3'>Hard</span><br></br>
+        {/* <span class="badge bg-light" id='l1'>Easy</span>&nbsp;&nbsp;&nbsp;&nbsp;
+        <span class="badge bg-secondary" id='l2'>Medium</span>&nbsp;&nbsp;&nbsp;
+        <span class="badge bg-secondary" id='l3'>Hard</span><br></br> */}
         
         <div class="progress">
-          <div class="progress-bar bg-success" role="progressbar" id="progress" style={{width: "5%", ariaValuenow:"25", ariaValuemin:"0", ariaValuemax:"100"}}></div>
+          <div class="progress-bar progress-bar-striped progress-bar-animated bg-info" role="progressbar" id="progress" style={{width: "5%", ariaValuenow:"25", ariaValuemin:"0", ariaValuemax:"100"}}></div>
         </div>
         </div>
         <h3>Correct: {answerArray[0]}</h3>
