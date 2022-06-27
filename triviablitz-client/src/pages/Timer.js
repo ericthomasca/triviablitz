@@ -9,7 +9,7 @@ function TimerPage({expiryTimestamp, playerScore}){
   return(
     <>
       <div className='timer-wrapper'>
-        <CountdownCircleTimer isPlaying duration={30} colors={["#36F63D", "#F7B801", "#A30000", "#A30000"]} colorsTime={[30, 10, 5, 0]}>
+        <CountdownCircleTimer isPlaying duration={30} colors={["#03ff46", "#F7B801", "#A30000", "#A30000"]} colorsTime={[30, 15, 10, 0]}>
         {renderTime}
         </CountdownCircleTimer>
       </div>
@@ -82,14 +82,13 @@ function MyTimer({ expiryTimestamp, playerScore, props, ref }) {
 
   return (
     <div>
-      <br/>
       <div style={{textAlign: 'center', color: 'white'}}>
         {/* <div style={{fontSize: '60px'}}>
           <span>{seconds}<h1 style={{ fontSize: "30%"}}>Remaining Time</h1></span>
         </div> */}
         {/* <p>{isRunning ? 'Running' : 'Not running'}</p>  */}
         {/* <button onClick={start}>Start</button> */}
-        <button onClick={pause}>Pause</button>
+        {/* <button onClick={pause}>Pause</button> */}
         {/* <button onClick={resume}>Resume</button> */}
         {/* <button onClick={() => {
           // Restarts to 5 minutes timer
@@ -98,7 +97,6 @@ function MyTimer({ expiryTimestamp, playerScore, props, ref }) {
           restart(time)
         }}>Restart</button> */}
       </div>
-      <hr/>
     </div>
   );
 }
