@@ -108,7 +108,9 @@ export function Question({setPlayerScore, playerScore}) {
       setChangeDifficultyState(changeDifficultyState + 1);
       console.log(difficultyArray[changeDifficultyState]);      
     } else {
-      alert(`Answer Incorrect! The correct answer is ` + answer +   `. Try again tomorrow!`);      
+      alert(`Answer Incorrect! The correct answer is:\n`
+      + answer + 
+      `\nTry again tomorrow!`);      
       navigate("/gameover", { state: { id: 1, score: playerScore, timeRemaining: ChildRef.timeRemaining} });
     }
     setCorrectOrNot("")
