@@ -8,6 +8,12 @@ import { useTimer } from 'react-timer-hook';
 import MyTimer from './Timer';
 import TimerPage from './Timer';
 import LockoutTimer from './LockoutTimer';
+import useSound from 'use-sound';
+import boopSfx from '../sounds/boop.mp3';
+import dundundun from '../sounds/dun-dun-dun.mp3';
+import cheer from '../sounds/fanfare.mp3';
+import wrong from '../sounds/disable-sound.mp3';
+import right from '../sounds/enable-sound.mp3';
 
 export function QuestionPage() {
   const time = new Date();
@@ -16,7 +22,6 @@ export function QuestionPage() {
   return(
     <>
     <TimerPage expiryTimestamp={time} playerScore={playerScore}/>
-    
     <Question setPlayerScore={setPlayerScore} playerScore={playerScore}/>
     </>
   )
