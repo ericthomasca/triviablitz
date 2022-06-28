@@ -1,14 +1,20 @@
 import express from "express";
 import { MongoClient } from "mongodb";
 import cors from "cors";
+import http from "http";
+import https from "https";
 import { fileURLToPath } from 'url';
 import path from 'path';
+import fs from "fs";
+
+
+const httpApp = express();
 
 const app = express();
-// const __filename = fileURLToPath(import.meta.url);
-// const __dirname = path.dirname(__filename);
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 app.use(cors());
-// app.use(express.static(path.join(__dirname, '/build')));
+app.use(express.static(path.join(__dirname, '/build')));
 
 app.use(express.json());
 
@@ -19,9 +25,7 @@ const url = 'mongodb+srv://triviablitz:BSl1Jqp62pHJoTeH@triviablitz.qdaeeqj.mong
 // const url = "http://localhost:27017";
 // TODO switch url to mongo atlas 
 
-app.get('/', (req, res) => {
-  res.sendFile(__dirname + '/build/index.html')
-})
+
 
 app.get("/api/getUsers", (req, res) => {
   MongoClient.connect(url, { useNewUrlParser: true }, (err, client) => {
@@ -133,3 +137,22 @@ app.delete("/api/deleteUser/:name", (req, res) => {
     }
   });
 });
+
+
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname + '/build/index.html'));
+})
+
+// const httpServer = http.createServer(httpApp);
+// const httpsServer = https.createServer({
+//   key: fs.readFileSync('privkey1.pem'),
+//   cert: fs.readFileSync('fullchain1.pem'),
+// }, app);
+
+// httpServer.listen(80, () => {
+//     console.log('HTTP Server running on port 80');
+// });
+
+// httpsServer.listen(443, () => {
+//     console.log('HTTPS Server running on port 443');
+// });
