@@ -5,6 +5,8 @@ import useSound from 'use-sound';
 import cheer from '../sounds/fanfare.mp3'
 import drums from '../sounds/909-drums.mp3'
 import Scores from './Scores';
+import { FacebookShareButton, TwitterShareButton } from "react-share";
+import { FacebookIcon, TwitterIcon } from "react-share";
 // import useWindowSize from 'react-use/lib/useWindowSize'
 // import Confetti from 'react-confetti'
 
@@ -65,8 +67,34 @@ export function GameOver(props){
         <p>Round 1 - EASY: 1 point </p>
         <p>Round 2 - MEDIUM: 3 points </p>
         <p>Round 3 - HARD: 5 points </p>
+        <br></br>
         </div>
         {/* <Scores /> */}
+
+        
+    <div className="App">
+        <h2>SHARE YOUR SCORE ON SOCIAL!</h2>
+      <FacebookShareButton
+        url={"https://duck-dns.triviablitz.com"}
+        quote={"Check out my score on Triviablitz!"}
+        hashtag={"#trivia"}
+        description={""}
+        className="Demo__some-network__share-button"
+      >
+        <FacebookIcon size={100} round /> Facebook
+      </FacebookShareButton>
+      <br />
+      <TwitterShareButton
+        title={"test"}
+        url={"https://duck-dns.triviablitz.com"}
+        hashtags={"trivia"}
+      >
+        <TwitterIcon size={100} round />
+        Twitter
+      </TwitterShareButton>
+    </div>
+  
+
         </>
     )
 }
