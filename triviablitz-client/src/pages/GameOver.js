@@ -61,7 +61,8 @@ export function GameOver(props){
         <h1>{message}</h1>
         <br></br>
         <h2>Your Score: {location.state.score}/9</h2>
-        <h2>Time Bonus: {timeBonus}</h2>
+
+        {/* <h2>Time Bonus: {timeBonus}</h2> */}
         <h3>Total: {total}</h3>
         <br></br>
         <p>Round 1 - EASY: 1 point </p>
@@ -70,7 +71,6 @@ export function GameOver(props){
         <br></br>
         </div>
         {/* <Scores /> */}
-
         
     <div className="App">
         <h2>SHARE YOUR SCORE ON SOCIAL!</h2>
@@ -87,14 +87,12 @@ export function GameOver(props){
       <TwitterShareButton
         title={"test"}
         url={"https://duck-dns.triviablitz.com"}
-        hashtags={"trivia"}
+        hashtags={"#trivia"}
       >
         <TwitterIcon size={100} round />
         Twitter
       </TwitterShareButton>
     </div>
-  
-
         </>
     )
 }
