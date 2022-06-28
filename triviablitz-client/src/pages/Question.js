@@ -205,7 +205,7 @@ export function Question({setPlayerScore, playerScore}) {
           <div class="progress-bar progress-bar-striped progress-bar-animated bg-info" role="progressbar" id="progress" style={{width: "5%", ariaValuenow:"25", ariaValuemin:"0", ariaValuemax:"100"}}></div>
         </div>
         </div>
-        <h3>Correct: {answerArray[0]}</h3>
+        {/* <h3>Correct: {answerArray[0]}</h3> */}
         {/* <h3>Times played today: playCounter</h3> // Just an idea to allow 3 plays per day */}
       </>
     </>

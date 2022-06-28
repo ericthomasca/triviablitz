@@ -112,7 +112,7 @@ export function LogIn() {
       <Form onSubmit={handleSubmit} method="post" enctype="multipart/form-data">
         <FormGroup role="form">
           <h2>Player name:</h2><br></br>
-          <FormControl id="name" type="text" onChange={(e)=> {setName(e.target.value)}}/><br></br><br></br>
+          <FormControl id="name" type="text" style={{width: "30%"}} onChange={(e)=> {setName(e.target.value)}}/><br></br><br></br>
           <Button type="submit" className="btn btn-info" required onClick={() => checkName()}>Start Game</Button>
         </FormGroup>
       </Form>
