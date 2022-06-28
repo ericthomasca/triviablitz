@@ -48,6 +48,7 @@ export function Scores() {
             <td>{user.name}</td>
             <td>{user.score}</td>
             <td>{user.timeLastPlayed.$timestamp}</td>
+            {/* <td>{user.timeLastPlayed.timeLastPlayed}</td> */}
           </tr>
         ))}
 
