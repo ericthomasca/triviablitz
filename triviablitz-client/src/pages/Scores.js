@@ -23,10 +23,25 @@ export function Scores() {
 
   const [users, setUsers] = useState([]);
 
-  useEffect(() => {
-    fetch("http://localhost:8800/api/getUsers")
-      .then(res => res.json())
-      .then(data => setUsers(data)).catch(error => console.log('error', error));
+  // useEffect(() => {
+  //   fetch('api/getUsers')
+  //     .then(res => res.json())
+  //     .then(data => setUsers(data)).catch(error => console.log('error', error));
+  // }, []);
+
+  useEffect(()=>{
+    var raw = "";
+
+    var requestOptions = {
+      method: 'GET',
+      body: raw,
+      redirect: 'follow'
+    };
+
+    fetch("api/getUsers", requestOptions)
+      .then(response => response.text())
+      .then(result => console.log(result))
+      .catch(error => console.log('error', error));
   }, []);
 
 
@@ -47,8 +62,8 @@ export function Scores() {
           <tr key={user._id}>
             <td>{user.name}</td>
             <td>{user.score}</td>
-            <td>{user.timeLastPlayed.$timestamp}</td>
-            {/* <td>{user.timeLastPlayed.timeLastPlayed}</td> */}
+            {/* <td>{user.timeLastPlayed.$timestamp}</td> */}
+            <td>{new Date(user.timeLastPlayed).toString()}</td>
           </tr>
         ))}
 
