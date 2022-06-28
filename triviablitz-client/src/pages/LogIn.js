@@ -84,9 +84,7 @@ export function LogIn() {
       var raw = JSON.stringify({
         "name": name,
         "score": score,
-        "timeLastPlayed": {
-          timeLastPlayed
-        }
+        "timeLastPlayed": timeLastPlayed
       });
   
       var requestOptions = {

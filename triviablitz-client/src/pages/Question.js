@@ -75,9 +75,7 @@ export function Question({setPlayerScore, playerScore}) {
       "_id": "62bb1d76afd511218f16a653",
       "name": location.state.newUser.name,
       "score": location.state.newUser.score,
-      "timeLastPlayed": {
-        "$timestamp": location.state.newUser.timeLastPlayed
-      }
+      "timeLastPlayed": location.state.newUser.timeLastPlayed
     });
 
     var requestOptions = {
