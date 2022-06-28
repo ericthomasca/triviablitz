@@ -23,26 +23,29 @@ export function Scores() {
 
   const [users, setUsers] = useState([]);
 
-  // useEffect(() => {
-  //   fetch('api/getUsers')
-  //     .then(res => res.json())
-  //     .then(data => setUsers(data)).catch(error => console.log('error', error));
-  // }, []);
-
-  useEffect(()=>{
-    var raw = "";
-
-    var requestOptions = {
-      method: 'GET',
-      body: raw,
-      redirect: 'follow'
-    };
-
-    fetch("api/getUsers", requestOptions)
-      .then(response => response.text())
-      .then(result => console.log(result))
-      .catch(error => console.log('error', error));
+  useEffect(() => {
+    const fetchData = async () =>{
+      const result = await fetch('api/getUsers');
+      const body = await result.json();
+      setUsers(body);
+    }
+    fetchData();
+    
   }, []);
+
+  // useEffect(()=>{
+  //   var raw = "";
+
+  //   var requestOptions = {
+  //     method: 'GET',
+  //     redirect: 'follow'
+  //   };
+
+  //   fetch("http://localhost:8800/api/getUsers", requestOptions)
+  //     .then(response => response.text())
+  //     .then(result => console.log(result))
+  //     .catch(error => console.log('error', error));
+  // }, []);
 
 
   // console.log(users);
