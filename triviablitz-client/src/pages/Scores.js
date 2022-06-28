@@ -30,8 +30,8 @@ export function Scores() {
   }, []);
 
 
-  console.log(users);
-
+  // console.log(users);
+  let d = new Date();
   return (
     <Table striped bordered hover variant="dark" class="styled-table">
       <thead>
@@ -47,7 +47,7 @@ export function Scores() {
           <tr key={user._id}>
             <td>{user.name}</td>
             <td>{user.score}</td>
-            <td>{user.timeLastPlayed.toString()}</td>
+            <td>{user.timeLastPlayed.$timestamp}</td>
           </tr>
         ))}
 

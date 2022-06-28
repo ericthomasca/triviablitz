@@ -81,15 +81,14 @@ export function GameOver(props){
         description={""}
         className="Demo__some-network__share-button"
       >
-        <FacebookIcon size={100} round /> Facebook
-      </FacebookShareButton>
-      <br />
+        <FacebookIcon size={50} round /> Facebook
+      </FacebookShareButton>&nbsp;&nbsp;&nbsp;
       <TwitterShareButton
         title={"test"}
         url={"https://duck-dns.triviablitz.com"}
         hashtags={"#trivia"}
       >
-        <TwitterIcon size={100} round />
+        <TwitterIcon size={50} round />
         Twitter
       </TwitterShareButton>
     </div>

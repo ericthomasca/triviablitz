@@ -28,7 +28,7 @@ export function Navigation(){
 
           <Navbar bg="navbar-expand-lg navbar-dark primary" style={{backgroundColor: "#e83283"}} expand={false} className="mb-3">
             <Container fluid>
-              <img src='images/TriviaBlitz Logo.png' style={{width:"15%", height:"15%", left:"70%", marginLeft: "43%", display:"block"}}/>
+              <img src='images/TriviaBlitz Logo.png' style={{width:"25%", height:"25%", left:"70%", marginLeft: "39%", display:"block"}}/>
               <Navbar.Toggle aria-controls={`offcanvasNavbar-expand-${false}`} />
               <Navbar.Offcanvas
                 id={`offcanvasNavbar-expand-${false}`}

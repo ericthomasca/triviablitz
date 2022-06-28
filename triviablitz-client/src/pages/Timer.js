@@ -5,9 +5,16 @@ import "./timerStyles.css";
 import ReactDOM from "react-dom";
 import { CountdownCircleTimer } from "react-countdown-circle-timer";
 import useSound from 'use-sound';
+import millionaire from '../sounds/millionaire.mp3';
 import tickTok from '../sounds/switch-off.mp3'
 
 function TimerPage({expiryTimestamp, playerScore}){
+
+  // const [playMillionaire, {stop}] = useSound(millionaire);
+  // playMillionaire()
+  // const stopPlay = () =>{
+  //   stop();
+  // }
   return(
     <>
       <div className='timer-wrapper'>
