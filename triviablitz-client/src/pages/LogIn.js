@@ -1,7 +1,7 @@
 import React from 'react';
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { Button, Form } from 'react-bootstrap';
+import { Button, Form, FormGroup, FormControl } from 'react-bootstrap';
 import useSound from 'use-sound';
 import plunger from '../sounds/plunger.mp3';
 import nope from '../sounds/glug-b.mp3';
@@ -13,7 +13,7 @@ export function LogIn() {
     time.setSeconds(time.getSeconds());
     time.setMinutes(time.getMinutes());
     time.setHours(time.getHours() + 24);
-  const [user, setUser] = useState("");
+  const [name, setName] = useState("ENTERED NAME");
   const [score, setScore] = useState(0);
   const [timeLastPlayed, setTimeLastPlayed] = useState(new Date().getTime());
   const [playPlunger] = useSound(plunger);
@@ -26,26 +26,54 @@ export function LogIn() {
       alert("Please enter a name");
     } else {
       playPlunger();
-      // setUsername(document.getElementById("name"));
+      setName(document.getElementById("name").value);
+      
       // alert(user)
       // console.log(username);
-      navigate("/game");
+      // let newUser = {
+      //   name: name,
+      //   score: score,
+      //   timeLastPlayed: timeLastPlayed
+      // }
+      // alert(name);
+      // alert(`${newUser.name} ${newUser.score} ${newUser.timeLastPlayed}`);
+      // var formdata = new FormData();
+      // formdata.append("name", name);
+      // formdata.append("score", score);
+      // formdata.append("timeLastPlayed", timeLastPlayed);
+    
+
+      // var requestOptions = {
+      // method: 'POST',
+      // body: formdata,
+      // redirect: 'follow'
+      // };
+  
+      // fetch('/api/addUser', {
+      //   method: 'POST',
+      //   body: JSON.stringify(newUser),
+      //   headers: {'Content-Type': 'application/json'}
+      // })
+      // navigate("/game");
+      
     }
   };
   const handleSubmit = (e) =>{
     e.preventDefault();
     let newUser = {
-      user: user,
+      name: name,
       score: score,
       timeLastPlayed: timeLastPlayed
     }
-    alert(user);
+    // alert(user);
+    alert(`${newUser.name} ${newUser.score} ${newUser.timeLastPlayed}`)
 
     fetch('/api/addUser', {
       method: 'POST',
       body: JSON.stringify(newUser),
       headers: {'Content-Type': 'application/json'}
     })
+    // navigate("/game");
 
   };
 
@@ -54,11 +82,12 @@ export function LogIn() {
     <div style={{textAlign: "center", color: "white"}}>
       <br></br>
       <br></br>
-      {/* <h1>TriviaBlitz!</h1> */}
-      <Form onSubmit={handleSubmit}>
-        <h2>Player name:</h2><br></br>
-        <input id="name" type="text"></input><br></br><br></br>
-        <Button type="button" class="btn btn-primary" required value={user} onClick={() => checkName()} onChange={(e)=> {setUser(e.target.value)}}>Start Game</Button>
+      <Form onSubmit={handleSubmit} method="post" enctype="multipart/form-data">
+        <FormGroup role="form">
+          <h2>Player name:</h2><br></br>
+          <FormControl id="name" type="text" onChange={(e)=> {setName(e.target.value)}}/><br></br><br></br>
+          <Button type="submit" className="btn btn-info" required onClick={() => checkName()}>Start Game</Button>
+        </FormGroup>
       </Form>
       <LockoutTimer expiryTimestamp={time}/>
       </div>

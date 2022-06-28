@@ -26,7 +26,7 @@ export function Scores() {
   useEffect(() => {
     fetch("http://localhost:8800/api/getUsers")
       .then(res => res.json())
-      .then(data => setUsers(data));
+      .then(data => setUsers(data)).catch(error => console.log('error', error));
   }, []);
 
 
@@ -47,7 +47,7 @@ export function Scores() {
           <tr key={user._id}>
             <td>{user.name}</td>
             <td>{user.score}</td>
-            <td>{user.timeLastPlayed}</td>
+            <td>{user.timeLastPlayed.toString()}</td>
           </tr>
         ))}
 

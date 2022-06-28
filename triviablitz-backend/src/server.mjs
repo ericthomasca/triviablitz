@@ -1,14 +1,14 @@
 import express from "express";
 import { MongoClient } from "mongodb";
-
+import cors from "cors";
 import { fileURLToPath } from 'url';
 import path from 'path';
 
 const app = express();
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
-
-app.use(express.static(path.join(__dirname, '/build')));
+// const __filename = fileURLToPath(import.meta.url);
+// const __dirname = path.dirname(__filename);
+app.use(cors());
+// app.use(express.static(path.join(__dirname, '/build')));
 
 app.use(express.json());
 
@@ -16,6 +16,7 @@ app.listen(8800, () => console.log("Server started on port 8800"));
 
 
 const url = 'mongodb+srv://triviablitz:BSl1Jqp62pHJoTeH@triviablitz.qdaeeqj.mongodb.net/?retryWrites=true&w=majority';  
+// const url = "http://localhost:27017";
 // TODO switch url to mongo atlas 
 
 app.get('/', (req, res) => {
@@ -73,7 +74,7 @@ app.post("/api/addUser", (req, res) => {
       const db = client.db("triviablitz");
       db.collection("users").insertOne(req.body, (err, result) => {
         if (err) {
-          console.log(err);
+          console.log(`DAWSON ERROR !!!!!!!!!!!!!!!${err}`);
           return;
         } else {
           res.send(result);
