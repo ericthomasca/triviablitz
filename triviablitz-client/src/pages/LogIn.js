@@ -68,12 +68,39 @@ export function LogIn() {
     // alert(user);
     alert(`${newUser.name} ${newUser.score} ${newUser.timeLastPlayed}`)
 
-    fetch('/api/addUser', {
+    var myHeaders = new Headers();
+    myHeaders.append("Content-Type", "application/json");
+
+    var raw = JSON.stringify({
+      "name": name,
+      "score": score,
+      "timeLastPlayed": {
+        timeLastPlayed
+      }
+    });
+
+    var requestOptions = {
       method: 'POST',
-      body: JSON.stringify(newUser),
-      headers: {'Content-Type': 'application/json'}
-    })
-    // navigate("/game");
+      headers: myHeaders,
+      body: raw,
+      redirect: 'follow'
+    };
+
+    fetch("http://localhost:8800/api/addUser", requestOptions)
+      .then(response => response.text())
+      .then(result => console.log(result))
+      .catch(error => console.log('error', error));
+
+    // fetch('/api/addUser', {
+    //   method: 'POST',
+    //   body: JSON.stringify({
+    //     name: name,
+    //     score: score,
+    //     timeLastPlayed: timeLastPlayed
+    //   }),
+    //   headers: {'Content-Type': 'application/json'}
+    // })
+    navigate("/game");
 
   };
 
