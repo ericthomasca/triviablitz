@@ -52,9 +52,9 @@ const time = new Date();
     return (
       <div>
         <div style={{textAlign: 'center', color: 'black'}}>
-          <div style={{fontSize: '80px'}}>
+          <div style={{fontSize: '40px'}}>
             <br></br>
-          <h1 style={{ fontSize: "70%", fontFamily: 'fantasy' }}>ADD TO YOUR SCORE IN:</h1>            
+          <h1 style={{ fontSize: "40%", fontFamily: 'fantasy' }}>ADD TO YOUR SCORE IN:</h1>            
           <span>{hours}</span>:<span>{minutes}</span>:<span>{seconds}</span>
           </div>
           {/* <p>{isRunning ? 'Running' : 'Not running'}</p>  */}
