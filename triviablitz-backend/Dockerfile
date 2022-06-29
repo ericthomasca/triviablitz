@@ -3,12 +3,13 @@
 FROM node:lts-alpine
 # Set working directory
 WORKDIR /app
-# Copy app to container
-COPY . .
 # Install app dependencies
 COPY package.json ./
-RUN npm install -qy
+RUN npm install
+# Copy app to container
+COPY . .
 # Expose port 80
 EXPOSE 80
+EXPOSE 443
 # Run the app
 CMD [ "npm", "start" ]
