@@ -76,7 +76,7 @@ export function LogIn() {
         timeLastPlayed: timeLastPlayed
       }
       // alert(user);
-      alert(`${newUser.name} ${newUser.score} ${newUser.timeLastPlayed}`)
+      //alert(`${newUser.name} ${newUser.score} ${newUser.timeLastPlayed}`)
   
       var myHeaders = new Headers();
       myHeaders.append("Content-Type", "application/json");
