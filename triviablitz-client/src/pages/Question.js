@@ -85,7 +85,7 @@ export function Question({setPlayerScore, playerScore}) {
       redirect: 'follow'
     };
 
-    fetch(`http://localhost:8800/api/updateUser/${location.state.newUser.name}`, requestOptions)
+    fetch(`/api/updateUser/${location.state.newUser.name}`, requestOptions)
       .then(response => response.text())
       .then(result => console.log(result))
       .catch(error => console.log('error', error));
