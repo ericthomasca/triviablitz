@@ -145,8 +145,8 @@ app.get('*', (req, res) => {
 
 const httpServer = http.createServer(httpApp);
 const httpsServer = https.createServer({
-  key: fs.readFileSync('privkey1.pem'),
-  cert: fs.readFileSync('fullchain1.pem'),
+  key: fs.readFileSync('/etc/letsencrypt/live/triviablitz.dawsonmercer.ca/privkey.pem'),
+  cert: fs.readFileSync('/etc/letsencrypt/live/triviablitz.dawsonmercer.ca/fullchain.pem'),
 }, app);
 
 httpServer.listen(80, () => {
