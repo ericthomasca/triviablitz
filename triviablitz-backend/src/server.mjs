@@ -18,7 +18,7 @@ app.use(express.static(path.join(__dirname, '/build')));
 
 app.use(express.json());
 
-app.listen(8800, () => console.log("Server started on port 8800"));
+// app.listen(8800, () => console.log("Server started on port 8800"));
 
 
 const url = 'mongodb+srv://triviablitz:BSl1Jqp62pHJoTeH@triviablitz.qdaeeqj.mongodb.net/?retryWrites=true&w=majority';  
@@ -143,16 +143,16 @@ app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname + '/build/index.html'));
 })
 
-// const httpServer = http.createServer(httpApp);
-// const httpsServer = https.createServer({
-//   key: fs.readFileSync('/etc/letsencrypt/live/triviablitz.dawsonmercer.ca/privkey.pem'),
-//   cert: fs.readFileSync('/etc/letsencrypt/live/triviablitz.dawsonmercer.ca/fullchain.pem'),
-// }, app);
+const httpServer = http.createServer(httpApp);
+const httpsServer = https.createServer({
+  key: fs.readFileSync('/etc/letsencrypt/live/triviablitz.ericthomas.ca/privkey.pem'),
+  cert: fs.readFileSync('/etc/letsencrypt/live/triviablitz.ericthomas.ca/fullchain.pem'),
+}, app);
 
-// httpServer.listen(80, () => {
-//     console.log('HTTP Server running on port 80');
-// });
+httpServer.listen(80, () => {
+    console.log('HTTP Server running on port 80');
+});
 
-// httpsServer.listen(443, () => {
-//     console.log('HTTPS Server running on port 443');
-// });
+httpsServer.listen(443, () => {
+    console.log('HTTPS Server running on port 443');
+});
