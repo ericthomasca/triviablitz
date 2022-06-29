@@ -94,7 +94,7 @@ export function LogIn() {
         redirect: 'follow'
       };
   
-      fetch("http://localhost:8800/api/addUser", requestOptions)
+      fetch("/api/addUser", requestOptions)
         .then(response => response.text())
         .then(result => console.log(result))
         .catch(error => console.log('error', error));
